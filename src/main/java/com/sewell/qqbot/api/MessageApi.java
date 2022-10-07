@@ -52,8 +52,9 @@ public class MessageApi extends BaseApi {
     public Message sendMessageReference(String channelId, String content, String messageId) throws ApiException {
         Map<String, Object> data = new HashMap<>();
         data.put("content", content);
+        data.put("msg_id", messageId);
         HashMap<String, Object> reference = new HashMap<>();
-        data.put("messageReference", reference);
+        data.put("message_reference", reference);
         reference.put("messageId", messageId);
         return sendMessage(channelId, data);
     }

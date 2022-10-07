@@ -15,7 +15,6 @@ import com.sewell.qqbot.websocket.BotWebsocketClient;
 import com.sewell.qqbot.websocket.entity.Payload;
 import com.sewell.qqbot.websocket.event.AtMessageEvent;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Service;
@@ -109,7 +108,8 @@ public class AtMessageSubscriber extends AbstractDispatchSubscriber implements A
 
         } catch (ApiException e) {
             log.error("消息处理发生异常: {} {}({})", e.getCode(), e.getMessage(), e.getError());
-            api.getMessageApi().sendMessage(channelId, "消息处理失败: " + e.getMessage(), messageId);
+//            api.getMessageApi().sendMessage(channelId, "消息处理失败: " + e.getMessage(), messageId);
+            api.getMessageApi().sendMessageReference(channelId, "机器人维护中，请稍后再试", messageId);
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
         }
