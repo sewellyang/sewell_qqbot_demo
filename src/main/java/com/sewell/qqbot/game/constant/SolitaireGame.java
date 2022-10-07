@@ -27,8 +27,9 @@ public class SolitaireGame implements Commands{
         SOLITAIRE_DIFFICULTY_HARD("/困难"),
         SOLITAIRE_ORDER_PLAYER_FIRST("/先手"),
         SOLITAIRE_ORDER_PLAYER_LAST("/后手"),
-
         SOLITAIRE_WORD_DESC("/成语释义"),
+
+        SOLITAIRE_PROGRESS("/接龙进度"),
         ;
         private final String cmd;
 

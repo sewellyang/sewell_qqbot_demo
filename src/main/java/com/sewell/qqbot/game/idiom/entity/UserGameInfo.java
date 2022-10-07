@@ -20,7 +20,7 @@ public class UserGameInfo {
     /**
      * 难度：1 低 2 中 3 高
      **/
-    private Integer difficulty;
+    private GameCode.GameDifficulty difficulty;
 
     private String lastWord;
 

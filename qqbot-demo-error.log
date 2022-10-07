@@ -166,3 +166,754 @@ java.lang.NullPointerException: Cannot invoke "com.sewell.qqbot.properties.BotCo
 2022-10-07 11:44:57 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304004,"message":"no permission to use this ark template"}
 2022-10-07 11:44:57 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"ark":{"kv":[{"key":"#DESC#"},{"key":"#PROMPT#"},{"key":"#TITLE#"},{"key":"#METADESC#"},{"key":"#IMG#"},{"key":"#LINK#"},{"key":"#SUBTITLE#"}],"templateId":24},"msg_id":"08d7d09df9fbcee3a31710e8d2b405385b48b8c1fe9906"}
 2022-10-07 11:44:57 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304004 没有发送Ark消息权限(no permission to use this ark template)
+2022-10-07 13:48:24 [WebSocket] ERROR com.sewell.qqbot.websocket.handler.EventHandler - subscriber出现异常：payload:Payload(op=0, d={"seq_in_channel":"95","author":{"bot":false,"avatar":"https://qqchannel-profile-1251316161.file.myqcloud.com/1663764369d391a1b33ad3c1ad?t=1663764369","id":"15074255222356608300","username":"Don Quijote"},"mentions":[{"bot":true,"avatar":"http://thirdqq.qlogo.cn/g?b=oidb&k=zas5knOfAIROuJnu09hKOA&s=0&t=1663774688","id":"13944062295744523402","username":"sewell测试-测试中"}],"guild_id":"1677466031178082391","member":{"joined_at":"2022-09-21T23:31:59+08:00","nick":"Don Quijote","roles":["4","15"]},"id":"08d7d09df9fbcee3a31710e8d2b405385f4898fbfe9906","channel_id":"11348328","content":"<@!13944062295744523402> 游戏","seq":95,"timestamp":"2022-10-07T13:48:08+08:00"}, s=2, t=AT_MESSAGE_CREATE)
+java.lang.RuntimeException: 无效的命令 游戏
+	at com.sewell.qqbot.enums.Commands.lambda$acquireByName$1(Commands.java:37)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at com.sewell.qqbot.enums.Commands.acquireByName(Commands.java:37)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.message(AtMessageSubscriber.java:73)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.messageHandle(AtMessageSubscriber.java:61)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.onSubscribe(AtMessageSubscriber.java:56)
+	at com.sewell.qqbot.websocket.handler.EventHandler.lambda$handle$0(EventHandler.java:26)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at com.sewell.qqbot.websocket.handler.EventHandler.handle(EventHandler.java:24)
+	at com.sewell.qqbot.websocket.handler.DispatchEventHandler.handle(DispatchEventHandler.java:20)
+	at com.sewell.qqbot.websocket.WebsocketDataHandler.executor(WebsocketDataHandler.java:38)
+	at com.sewell.qqbot.websocket.BotWebsocketClient.handleResult(BotWebsocketClient.java:69)
+	at com.sewell.qqbot.websocket.BotWebsocketClient.onMessage(BotWebsocketClient.java:48)
+	at org.java_websocket.client.WebSocketClient.onWebsocketMessage(WebSocketClient.java:636)
+	at org.java_websocket.drafts.Draft_6455.processFrameText(Draft_6455.java:986)
+	at org.java_websocket.drafts.Draft_6455.processFrame(Draft_6455.java:910)
+	at org.java_websocket.WebSocketImpl.decodeFrames(WebSocketImpl.java:401)
+	at org.java_websocket.WebSocketImpl.decode(WebSocketImpl.java:233)
+	at org.java_websocket.client.WebSocketClient.run(WebSocketClient.java:516)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-10-07 14:50:55 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'botService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'atMessageSubscriber': Invocation of init method failed; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:332)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.sewell.qqbot.BotDemoBootstrap.main(BotDemoBootstrap.java:14)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'atMessageSubscriber': Invocation of init method failed; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1609)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1462)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:544)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:520)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:673)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:329)
+	... 16 common frames omitted
+Caused by: java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at com.sewell.qqbot.util.SpringBeanUtils.getBean(SpringBeanUtils.java:53)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.lambda$init$1(AtMessageSubscriber.java:46)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.init(AtMessageSubscriber.java:45)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+	... 36 common frames omitted
+2022-10-07 14:51:43 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'botService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'atMessageSubscriber': Invocation of init method failed; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:332)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.sewell.qqbot.BotDemoBootstrap.main(BotDemoBootstrap.java:14)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'atMessageSubscriber': Invocation of init method failed; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1609)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1462)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:544)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:520)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:673)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:329)
+	... 16 common frames omitted
+Caused by: java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at com.sewell.qqbot.util.SpringBeanUtils.getBean(SpringBeanUtils.java:53)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.lambda$init$1(AtMessageSubscriber.java:46)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.init(AtMessageSubscriber.java:45)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+	... 36 common frames omitted
+2022-10-07 14:52:38 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'botService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'atMessageSubscriber': Invocation of init method failed; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:332)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.sewell.qqbot.BotDemoBootstrap.main(BotDemoBootstrap.java:14)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'atMessageSubscriber': Invocation of init method failed; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1609)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1462)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:544)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:520)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:673)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:329)
+	... 16 common frames omitted
+Caused by: java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at com.sewell.qqbot.util.SpringBeanUtils.getBean(SpringBeanUtils.java:53)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.lambda$init$1(AtMessageSubscriber.java:46)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.init(AtMessageSubscriber.java:45)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+	... 36 common frames omitted
+2022-10-07 14:54:45 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'botService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'atMessageSubscriber': Invocation of init method failed; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:332)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.sewell.qqbot.BotDemoBootstrap.main(BotDemoBootstrap.java:14)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'atMessageSubscriber': Invocation of init method failed; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1609)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1462)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:544)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:520)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:673)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:329)
+	... 16 common frames omitted
+Caused by: java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at com.sewell.qqbot.util.SpringBeanUtils.getBean(SpringBeanUtils.java:53)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.lambda$init$1(AtMessageSubscriber.java:46)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.init(AtMessageSubscriber.java:45)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+	... 36 common frames omitted
+2022-10-07 14:55:07 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'botService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'atMessageSubscriber': Invocation of init method failed; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:332)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.sewell.qqbot.BotDemoBootstrap.main(BotDemoBootstrap.java:14)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'atMessageSubscriber': Invocation of init method failed; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1609)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1462)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:544)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:520)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:673)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:329)
+	... 16 common frames omitted
+Caused by: java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at com.sewell.qqbot.util.SpringBeanUtils.getBean(SpringBeanUtils.java:53)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.lambda$init$1(AtMessageSubscriber.java:46)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.init(AtMessageSubscriber.java:45)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+	... 36 common frames omitted
+2022-10-07 14:55:29 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'botService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'atMessageSubscriber': Invocation of init method failed; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:332)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.sewell.qqbot.BotDemoBootstrap.main(BotDemoBootstrap.java:14)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'atMessageSubscriber': Invocation of init method failed; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1609)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1462)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:544)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:520)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:673)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:329)
+	... 16 common frames omitted
+Caused by: java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at com.sewell.qqbot.util.SpringBeanUtils.getBean(SpringBeanUtils.java:53)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.lambda$init$1(AtMessageSubscriber.java:46)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.init(AtMessageSubscriber.java:45)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+	... 36 common frames omitted
+2022-10-07 14:55:40 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'botService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'atMessageSubscriber': Invocation of init method failed; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:332)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.sewell.qqbot.BotDemoBootstrap.main(BotDemoBootstrap.java:14)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'atMessageSubscriber': Invocation of init method failed; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1609)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1462)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:544)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:520)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:673)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:329)
+	... 16 common frames omitted
+Caused by: java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at com.sewell.qqbot.util.SpringBeanUtils.getBean(SpringBeanUtils.java:53)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.lambda$init$1(AtMessageSubscriber.java:46)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.init(AtMessageSubscriber.java:45)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+	... 36 common frames omitted
+2022-10-07 14:56:51 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'botService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'atMessageSubscriber': Invocation of init method failed; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:332)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.sewell.qqbot.BotDemoBootstrap.main(BotDemoBootstrap.java:16)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'atMessageSubscriber': Invocation of init method failed; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1609)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1462)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:544)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:520)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:673)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:329)
+	... 16 common frames omitted
+Caused by: java.lang.NullPointerException: Cannot invoke "org.springframework.context.ConfigurableApplicationContext.getBean(java.lang.Class)" because "this.cfgContext" is null
+	at com.sewell.qqbot.util.SpringBeanUtils.getBean(SpringBeanUtils.java:53)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.lambda$init$1(AtMessageSubscriber.java:46)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.init(AtMessageSubscriber.java:45)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+	... 36 common frames omitted
+2022-10-07 14:58:44 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+java.lang.IllegalStateException: Failed to execute ApplicationRunner
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:765)
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.sewell.qqbot.BotDemoBootstrap.main(BotDemoBootstrap.java:16)
+Caused by: java.lang.ClassCastException: class com.sewell.qqbot.game.constant.SolitaireGame cannot be cast to class com.sewell.qqbot.game.BotGame (com.sewell.qqbot.game.constant.SolitaireGame and com.sewell.qqbot.game.BotGame are in unnamed module of loader 'app')
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.lambda$run$1(AtMessageSubscriber.java:60)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.run(AtMessageSubscriber.java:59)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:762)
+	... 5 common frames omitted
+2022-10-07 14:59:32 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+java.lang.IllegalStateException: Failed to execute ApplicationRunner
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:765)
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.sewell.qqbot.BotDemoBootstrap.main(BotDemoBootstrap.java:16)
+Caused by: java.lang.ClassCastException: class com.sewell.qqbot.game.constant.SolitaireGame cannot be cast to class com.sewell.qqbot.game.BotGame (com.sewell.qqbot.game.constant.SolitaireGame and com.sewell.qqbot.game.BotGame are in unnamed module of loader 'app')
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.lambda$run$1(AtMessageSubscriber.java:60)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.run(AtMessageSubscriber.java:59)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:762)
+	... 5 common frames omitted
+2022-10-07 16:20:12 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 16:20:12 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: c5e0ea8c8fb3a6abf1dee3c215143d1a
+2022-10-07 16:20:12 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11348328/messages
+2022-10-07 16:20:12 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 400
+2022-10-07 16:20:12 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":50006,"message":"empty msg"}
+2022-10-07 16:20:12 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"messageReference":{"messageId":"08d7d09df9fbcee3a31710e8d2b405387548bac2ff9906"},"content":""}
+2022-10-07 16:20:12 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 50006 消息为空(empty msg)
+2022-10-07 16:21:51 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 16:21:51 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: d1bedb6e972d45987d9ab1ceae43bb82
+2022-10-07 16:21:51 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11348328/messages
+2022-10-07 16:21:51 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 400
+2022-10-07 16:21:51 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":50006,"message":"empty msg"}
+2022-10-07 16:21:51 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"messageReference":{"messageId":"08d7d09df9fbcee3a31710e8d2b405387748edc2ff9906"},"content":""}
+2022-10-07 16:21:51 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 50006 消息为空(empty msg)
+2022-10-07 16:22:23 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 16:22:23 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: 6e2f4c3467346e23e70fdcfafcc70eea
+2022-10-07 16:22:23 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11348328/messages
+2022-10-07 16:22:23 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 400
+2022-10-07 16:22:23 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":50006,"message":"empty msg"}
+2022-10-07 16:22:23 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"messageReference":{"messageId":"08d7d09df9fbcee3a31710e8d2b405387948b3c3ff9906"},"content":""}
+2022-10-07 16:22:23 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 50006 消息为空(empty msg)
+2022-10-07 16:23:22 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 无效的命令：/成语接龙
+2022-10-07 16:23:42 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 无效的命令：成语接龙
+2022-10-07 16:25:10 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 无效的命令：测试
+2022-10-07 16:31:56 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 无效的命令：测试
+2022-10-07 16:31:56 [WebSocket] ERROR com.sewell.qqbot.websocket.handler.EventHandler - subscriber出现异常：payload:Payload(op=0, d={"seq_in_channel":"139","author":{"bot":false,"avatar":"https://qqchannel-profile-1251316161.file.myqcloud.com/1663764369d391a1b33ad3c1ad?t=1663764369","id":"15074255222356608300","username":"Don Quijote"},"mentions":[{"bot":true,"avatar":"http://thirdqq.qlogo.cn/g?b=oidb&k=zas5knOfAIROuJnu09hKOA&s=0&t=1663774688","id":"13944062295744523402","username":"sewell测试-测试中"}],"guild_id":"1677466031178082391","member":{"joined_at":"2022-09-21T23:31:59+08:00","nick":"Don Quijote","roles":["4","16"]},"id":"08d7d09df9fbcee3a31710e8d2b405388b0148fbc7ff9906","channel_id":"11348328","content":"<@!13944062295744523402> 测试","seq":139,"timestamp":"2022-10-07T16:31:55+08:00"}, s=2, t=AT_MESSAGE_CREATE)
+java.lang.NullPointerException: Cannot invoke "com.sewell.qqbot.game.BotGame.handle(com.sewell.qqbot.entity.Message)" because "gameHandle" is null
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.message(AtMessageSubscriber.java:108)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.messageHandle(AtMessageSubscriber.java:82)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.onSubscribe(AtMessageSubscriber.java:77)
+	at com.sewell.qqbot.websocket.handler.EventHandler.lambda$handle$0(EventHandler.java:26)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at com.sewell.qqbot.websocket.handler.EventHandler.handle(EventHandler.java:24)
+	at com.sewell.qqbot.websocket.handler.DispatchEventHandler.handle(DispatchEventHandler.java:20)
+	at com.sewell.qqbot.websocket.WebsocketDataHandler.executor(WebsocketDataHandler.java:38)
+	at com.sewell.qqbot.websocket.BotWebsocketClient.handleResult(BotWebsocketClient.java:69)
+	at com.sewell.qqbot.websocket.BotWebsocketClient.onMessage(BotWebsocketClient.java:48)
+	at org.java_websocket.client.WebSocketClient.onWebsocketMessage(WebSocketClient.java:636)
+	at org.java_websocket.drafts.Draft_6455.processFrameText(Draft_6455.java:986)
+	at org.java_websocket.drafts.Draft_6455.processFrame(Draft_6455.java:910)
+	at org.java_websocket.WebSocketImpl.decodeFrames(WebSocketImpl.java:401)
+	at org.java_websocket.WebSocketImpl.decode(WebSocketImpl.java:233)
+	at org.java_websocket.client.WebSocketClient.run(WebSocketClient.java:516)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-10-07 16:32:32 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 无效的命令：测试
+2022-10-07 16:33:00 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 无效的命令：测试
+2022-10-07 16:37:07 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 16:37:07 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: 9f35e89feb46586d287519d7706c2f8f
+2022-10-07 16:37:07 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11348328/messages
+2022-10-07 16:37:07 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 16:37:07 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304045,"message":"push channel message reach limit"}
+2022-10-07 16:37:07 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"messageReference":{"messageId":"08d7d09df9fbcee3a31710e8d2b40538960148b2caff9906"},"content":"【逆天而行】 不是成语!"}
+2022-10-07 16:37:07 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304045 未知错误(push channel message reach limit)(push channel message reach limit)
+2022-10-07 16:37:57 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 16:37:57 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: 80a0a8978f188797093f1479b849de81
+2022-10-07 16:37:57 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11348328/messages
+2022-10-07 16:37:57 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 16:37:57 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304045,"message":"push channel message reach limit"}
+2022-10-07 16:37:57 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"messageReference":{"messageId":"08d7d09df9fbcee3a31710e8d2b40538980148e4caff9906"},"content":"请选择成语接龙游戏难度：\n【简单】答对3个成语或AI接龙失败则玩家获胜，累计答错5个成语则玩家失败，允许同音不同调 \n【中等】连续答对5个成语或AI接龙失败则玩家获胜，累计答错5个成语则玩家失败，允许同音不同调 \n【困难】连续答对10个成语或AI接龙失败则玩家获胜，累计答错10个成语则玩家失败，不允许同音不同调"}
+2022-10-07 16:37:57 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304045 未知错误(push channel message reach limit)(push channel message reach limit)
+2022-10-07 16:38:22 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 16:38:22 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: c857392c546a62bec33201a6f81c84e8
+2022-10-07 16:38:22 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11348328/messages
+2022-10-07 16:38:22 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 16:38:22 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304045,"message":"push channel message reach limit"}
+2022-10-07 16:38:22 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"messageReference":{"messageId":"08d7d09df9fbcee3a31710e8d2b405389b0148fdcaff9906"},"content":"您已经开始游戏，请继续"}
+2022-10-07 16:38:22 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304045 未知错误(push channel message reach limit)(push channel message reach limit)
+2022-10-07 16:53:43 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 无效的命令：后手
+2022-10-07 16:54:54 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 16:54:54 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: a6f542a545b64907cf230e4ce5bdde23
+2022-10-07 16:54:54 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11910960/messages
+2022-10-07 16:54:54 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 16:54:54 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304045,"message":"push channel message reach limit"}
+2022-10-07 16:54:54 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"messageReference":{"messageId":"08d7d09df9fbcee3a31710b0fed605382948dcd2ff9906"},"content":"来历不明"}
+2022-10-07 16:54:54 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304045 未知错误(push channel message reach limit)(push channel message reach limit)
+2022-10-07 16:58:34 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 16:58:34 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: 25853c6b3e6f74dedebfd2ec57d4ddd5
+2022-10-07 16:58:34 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11911544/messages
+2022-10-07 16:58:34 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 16:58:34 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304047,"message":"push message channel num reach limit"}
+2022-10-07 16:58:34 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"messageReference":{"messageId":"08d7d09df9fbcee3a31710f882d705380148b9d4ff9906"},"content":"尚未开始游戏，请输入【/成语接龙】开始游戏"}
+2022-10-07 16:58:34 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304047 未知错误(push message channel num reach limit)(push message channel num reach limit)
+2022-10-07 16:58:53 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 16:58:53 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: c7e860a06bc20b07a7954e00e202a204
+2022-10-07 16:58:53 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11911544/messages
+2022-10-07 16:58:53 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 16:58:53 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304047,"message":"push message channel num reach limit"}
+2022-10-07 16:58:53 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"messageReference":{"messageId":"08d7d09df9fbcee3a31710f882d705380348cdd4ff9906"},"content":"请选择成语接龙游戏难度：\n【简单】答对3个成语或AI接龙失败则玩家获胜，累计答错5个成语则玩家失败，允许同音不同调 \n【中等】连续答对5个成语或AI接龙失败则玩家获胜，累计答错3个成语则玩家失败，允许同音不同调 \n【困难】连续答对10个成语或AI接龙失败则玩家获胜，累计答错1个成语则玩家失败，不允许同音不同调"}
+2022-10-07 16:58:53 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304047 未知错误(push message channel num reach limit)(push message channel num reach limit)
+2022-10-07 17:09:15 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 17:09:15 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: 82f686de44ad7dfaad78ca8bfbc3848c
+2022-10-07 17:09:15 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11911912/messages
+2022-10-07 17:09:15 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 17:09:15 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304047,"message":"push message channel num reach limit"}
+2022-10-07 17:09:15 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"messageReference":{"messageId":"08d7d09df9fbcee3a31710e885d705380148bad9ff9906"},"content":"请选择成语接龙游戏难度：\n【简单】答对3个成语或AI接龙失败则玩家获胜，累计答错5个成语则玩家失败，允许同音不同调 \n【中等】连续答对5个成语或AI接龙失败则玩家获胜，累计答错3个成语则玩家失败，允许同音不同调 \n【困难】连续答对10个成语或AI接龙失败则玩家获胜，累计答错1个成语则玩家失败，不允许同音不同调"}
+2022-10-07 17:09:15 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304047 未知错误(push message channel num reach limit)(push message channel num reach limit)
+2022-10-07 17:15:06 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 17:15:06 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: 336643e2ad442718f49fc9435c5fa120
+2022-10-07 17:15:06 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11911912/messages
+2022-10-07 17:15:06 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 17:15:06 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304047,"message":"push message channel num reach limit"}
+2022-10-07 17:15:06 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"messageReference":{"messageId":"08d7d09df9fbcee3a31710e885d70538034898dcff9906"},"content":"您已经开始游戏，请继续"}
+2022-10-07 17:15:06 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304047 未知错误(push message channel num reach limit)(push message channel num reach limit)
+2022-10-07 17:16:40 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 17:16:40 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: eb5df688b4268860b812df827794a4ac
+2022-10-07 17:16:40 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11911912/messages
+2022-10-07 17:16:40 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 17:16:40 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304047,"message":"push message channel num reach limit"}
+2022-10-07 17:16:40 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"messageReference":{"messageId":"08d7d09df9fbcee3a31710e885d705380548f8dcff9906"},"content":"游戏已停止，感谢您的使用！"}
+2022-10-07 17:16:40 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304047 未知错误(push message channel num reach limit)(push message channel num reach limit)
+2022-10-07 17:38:07 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 17:38:07 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: 5bd2009a99f9f6ba6bbccd6a30eae876
+2022-10-07 17:38:07 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11911912/messages
+2022-10-07 17:38:07 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 17:38:07 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304047,"message":"push message channel num reach limit"}
+2022-10-07 17:38:07 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"messageReference":{"messageId":"08d7d09df9fbcee3a31710e885d705380748fee6ff9906"},"content":"请选择成语接龙游戏难度：\n【简单】答对3个成语或AI接龙失败则玩家获胜，累计答错5个成语则玩家失败，允许同音不同调 \n【中等】连续答对5个成语或AI接龙失败则玩家获胜，累计答错3个成语则玩家失败，允许同音不同调 \n【困难】连续答对10个成语或AI接龙失败则玩家获胜，累计答错1个成语则玩家失败，不允许同音不同调"}
+2022-10-07 17:38:07 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304047 未知错误(push message channel num reach limit)(push message channel num reach limit)
+2022-10-07 17:38:08 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 17:38:08 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: ece0011b3b0673463479570ac9798492
+2022-10-07 17:38:08 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11911912/messages
+2022-10-07 17:38:08 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 17:38:08 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304047,"message":"push message channel num reach limit"}
+2022-10-07 17:38:08 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"messageReference":{"messageId":"08d7d09df9fbcee3a31710e885d705380748fee6ff9906"},"content":"请选择成语接龙游戏难度：\n【简单】答对3个成语或AI接龙失败则玩家获胜，累计答错5个成语则玩家失败，允许同音不同调 \n【中等】连续答对5个成语或AI接龙失败则玩家获胜，累计答错3个成语则玩家失败，允许同音不同调 \n【困难】连续答对10个成语或AI接龙失败则玩家获胜，累计答错1个成语则玩家失败，不允许同音不同调"}
+2022-10-07 17:38:08 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304047 未知错误(push message channel num reach limit)(push message channel num reach limit)
+2022-10-07 17:50:46 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 17:50:46 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: 999353f1b50f9ec08dbb2d69d32493ba
+2022-10-07 17:50:46 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11911912/messages
+2022-10-07 17:50:46 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 17:50:46 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304047,"message":"push message channel num reach limit"}
+2022-10-07 17:50:46 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"messageReference":{"messageId":"08d7d09df9fbcee3a31710e885d705380b48f5ecff9906"},"content":"请先选择难度"}
+2022-10-07 17:50:46 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304047 未知错误(push message channel num reach limit)(push message channel num reach limit)
+2022-10-07 17:50:47 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 17:50:47 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: afb3eb59d9d24fba798312c88882bed2
+2022-10-07 17:50:47 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11911912/messages
+2022-10-07 17:50:47 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 17:50:47 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304047,"message":"push message channel num reach limit"}
+2022-10-07 17:50:47 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"messageReference":{"messageId":"08d7d09df9fbcee3a31710e885d705380b48f5ecff9906"},"content":"请先选择难度"}
+2022-10-07 17:50:47 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304047 未知错误(push message channel num reach limit)(push message channel num reach limit)
+2022-10-07 17:51:18 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 17:51:18 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: 575d94a136335716bced6021d0965bc3
+2022-10-07 17:51:18 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11911912/messages
+2022-10-07 17:51:18 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 17:51:18 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304047,"message":"push message channel num reach limit"}
+2022-10-07 17:51:18 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"messageReference":{"messageId":"08d7d09df9fbcee3a31710e885d705380f4895edff9906"},"content":"您已经开始游戏，请继续"}
+2022-10-07 17:51:18 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304047 未知错误(push message channel num reach limit)(push message channel num reach limit)
+2022-10-07 18:14:28 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 无效的命令：我
+2022-10-07 18:16:56 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 18:16:56 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: 09cd3a454b2096b7842af88c6565a32f
+2022-10-07 18:16:56 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11911912/messages
+2022-10-07 18:16:56 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 18:16:56 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304047,"message":"push message channel num reach limit"}
+2022-10-07 18:16:56 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"message_reference":{"messageId":"08d7d09df9fbcee3a31710e885d705381f4897f9ff9906"},"content":"请选择成语接龙游戏难度：\n【简单】答对3个成语或AI接龙失败则玩家获胜，累计答错5个成语则玩家失败，允许同音不同调 \n【中等】连续答对5个成语或AI接龙失败则玩家获胜，累计答错3个成语则玩家失败，允许同音不同调 \n【困难】连续答对10个成语或AI接龙失败则玩家获胜，累计答错1个成语则玩家失败，不允许同音不同调"}
+2022-10-07 18:16:56 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304047 未知错误(push message channel num reach limit)(push message channel num reach limit)
+2022-10-07 18:17:24 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 18:17:24 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: 5b7852d33e6c24501527989f742ad9ce
+2022-10-07 18:17:24 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11911912/messages
+2022-10-07 18:17:24 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 18:17:24 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304047,"message":"push message channel num reach limit"}
+2022-10-07 18:17:24 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"message_reference":{"messageId":"08d7d09df9fbcee3a31710e885d705382148b1f9ff9906"},"content":"您已经开始游戏，请继续"}
+2022-10-07 18:17:33 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304047 未知错误(push message channel num reach limit)(push message channel num reach limit)
+2022-10-07 18:18:46 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 18:18:46 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: e762120c726d77935ba664d36f29b716
+2022-10-07 18:18:46 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11911912/messages
+2022-10-07 18:18:46 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 18:18:46 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304047,"message":"push message channel num reach limit"}
+2022-10-07 18:18:46 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"message_reference":{"messageId":"08d7d09df9fbcee3a31710e885d70538234883faff9906"},"content":"请选择成语接龙游戏难度：\n【简单】答对3个成语或AI接龙失败则玩家获胜，累计答错5个成语则玩家失败，允许同音不同调 \n【中等】连续答对5个成语或AI接龙失败则玩家获胜，累计答错3个成语则玩家失败，允许同音不同调 \n【困难】连续答对10个成语或AI接龙失败则玩家获胜，累计答错1个成语则玩家失败，不允许同音不同调"}
+2022-10-07 18:18:46 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304047 未知错误(push message channel num reach limit)(push message channel num reach limit)
+2022-10-07 18:18:46 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 18:18:46 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: eadd65fabcbe6aec3b26c151f6b63126
+2022-10-07 18:18:46 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11911912/messages
+2022-10-07 18:18:46 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 18:18:46 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304047,"message":"push message channel num reach limit"}
+2022-10-07 18:18:46 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"message_reference":{"messageId":"08d7d09df9fbcee3a31710e885d70538234883faff9906"},"content":"机器人维护中，请稍后再试"}
+2022-10-07 18:18:46 [WebSocket] ERROR com.sewell.qqbot.websocket.handler.EventHandler - subscriber出现异常：payload:Payload(op=0, d={"seq_in_channel":"35","author":{"bot":false,"avatar":"https://qqchannel-profile-1251316161.file.myqcloud.com/1663764369d391a1b33ad3c1ad?t=1663764369","id":"15074255222356608300","username":"Don Quijote"},"mentions":[{"bot":true,"avatar":"http://thirdqq.qlogo.cn/g?b=oidb&k=zas5knOfAIROuJnu09hKOA&s=0&t=1663774688","id":"13944062295744523402","username":"sewell测试-测试中"}],"guild_id":"1677466031178082391","member":{"joined_at":"2022-09-21T23:31:59+08:00","nick":"Don Quijote","roles":["4","16"]},"id":"08d7d09df9fbcee3a31710e885d70538234883faff9906","channel_id":"11911912","content":"<@!13944062295744523402> /成语接龙","seq":35,"timestamp":"2022-10-07T18:18:43+08:00"}, s=2, t=AT_MESSAGE_CREATE)
+com.sewell.qqbot.exception.ApiException: 未知错误(push message channel num reach limit)
+	at com.sewell.qqbot.api.BaseApi.exception(BaseApi.java:310)
+	at com.sewell.qqbot.api.BaseApi.result(BaseApi.java:152)
+	at com.sewell.qqbot.api.BaseApi.post(BaseApi.java:65)
+	at com.sewell.qqbot.api.MessageApi.sendMessage(MessageApi.java:207)
+	at com.sewell.qqbot.api.MessageApi.sendMessageReference(MessageApi.java:59)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.message(AtMessageSubscriber.java:112)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.messageHandle(AtMessageSubscriber.java:81)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.onSubscribe(AtMessageSubscriber.java:76)
+	at com.sewell.qqbot.websocket.handler.EventHandler.lambda$handle$0(EventHandler.java:26)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at com.sewell.qqbot.websocket.handler.EventHandler.handle(EventHandler.java:24)
+	at com.sewell.qqbot.websocket.handler.DispatchEventHandler.handle(DispatchEventHandler.java:20)
+	at com.sewell.qqbot.websocket.WebsocketDataHandler.executor(WebsocketDataHandler.java:38)
+	at com.sewell.qqbot.websocket.BotWebsocketClient.handleResult(BotWebsocketClient.java:69)
+	at com.sewell.qqbot.websocket.BotWebsocketClient.onMessage(BotWebsocketClient.java:48)
+	at org.java_websocket.client.WebSocketClient.onWebsocketMessage(WebSocketClient.java:636)
+	at org.java_websocket.drafts.Draft_6455.processFrameText(Draft_6455.java:986)
+	at org.java_websocket.drafts.Draft_6455.processFrame(Draft_6455.java:910)
+	at org.java_websocket.WebSocketImpl.decodeFrames(WebSocketImpl.java:401)
+	at org.java_websocket.WebSocketImpl.decode(WebSocketImpl.java:233)
+	at org.java_websocket.client.WebSocketClient.run(WebSocketClient.java:516)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-10-07 19:18:58 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 无效的命令：/接龙进度
+2022-10-07 19:18:58 [WebSocket] ERROR com.sewell.qqbot.websocket.handler.EventHandler - subscriber出现异常：payload:Payload(op=0, d={"seq_in_channel":"30","author":{"bot":false,"avatar":"https://qqchannel-profile-1251316161.file.myqcloud.com/1663764369d391a1b33ad3c1ad?t=1663764369","id":"15074255222356608300","username":"Don Quijote"},"mentions":[{"bot":true,"avatar":"http://thirdqq.qlogo.cn/g?b=oidb&k=zas5knOfAIROuJnu09hKOA&s=0&t=1663774688","id":"13944062295744523402","username":"sewell测试-测试中"}],"guild_id":"1677466031178082391","member":{"joined_at":"2022-09-21T23:31:59+08:00","nick":"Don Quijote","roles":["4","16"]},"id":"08d7d09df9fbcee3a31710809fd705381e48a196809a06","channel_id":"11915136","content":"<@!13944062295744523402> /接龙进度","seq":30,"timestamp":"2022-10-07T19:18:57+08:00"}, s=2, t=AT_MESSAGE_CREATE)
+java.lang.RuntimeException: 无效的命令 /接龙进度
+	at com.sewell.qqbot.game.constant.SolitaireGame$SolitaireGameEnum.lambda$acquireByName$1(SolitaireGame.java:40)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at com.sewell.qqbot.game.constant.SolitaireGame$SolitaireGameEnum.acquireByName(SolitaireGame.java:40)
+	at com.sewell.qqbot.game.idiom.SolitaireGameCoreHandle.handle(SolitaireGameCoreHandle.java:82)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.message(AtMessageSubscriber.java:107)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.messageHandle(AtMessageSubscriber.java:81)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.onSubscribe(AtMessageSubscriber.java:76)
+	at com.sewell.qqbot.websocket.handler.EventHandler.lambda$handle$0(EventHandler.java:26)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at com.sewell.qqbot.websocket.handler.EventHandler.handle(EventHandler.java:24)
+	at com.sewell.qqbot.websocket.handler.DispatchEventHandler.handle(DispatchEventHandler.java:20)
+	at com.sewell.qqbot.websocket.WebsocketDataHandler.executor(WebsocketDataHandler.java:38)
+	at com.sewell.qqbot.websocket.BotWebsocketClient.handleResult(BotWebsocketClient.java:69)
+	at com.sewell.qqbot.websocket.BotWebsocketClient.onMessage(BotWebsocketClient.java:48)
+	at org.java_websocket.client.WebSocketClient.onWebsocketMessage(WebSocketClient.java:636)
+	at org.java_websocket.drafts.Draft_6455.processFrameText(Draft_6455.java:986)
+	at org.java_websocket.drafts.Draft_6455.processFrame(Draft_6455.java:910)
+	at org.java_websocket.WebSocketImpl.decodeFrames(WebSocketImpl.java:401)
+	at org.java_websocket.WebSocketImpl.decode(WebSocketImpl.java:233)
+	at org.java_websocket.client.WebSocketClient.run(WebSocketClient.java:516)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-10-07 19:20:26 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 无效的命令：/接龙进度
+2022-10-07 19:20:26 [WebSocket] ERROR com.sewell.qqbot.websocket.handler.EventHandler - subscriber出现异常：payload:Payload(op=0, d={"seq_in_channel":"31","author":{"bot":false,"avatar":"https://qqchannel-profile-1251316161.file.myqcloud.com/1663764369d391a1b33ad3c1ad?t=1663764369","id":"15074255222356608300","username":"Don Quijote"},"mentions":[{"bot":true,"avatar":"http://thirdqq.qlogo.cn/g?b=oidb&k=zas5knOfAIROuJnu09hKOA&s=0&t=1663774688","id":"13944062295744523402","username":"sewell测试-测试中"}],"guild_id":"1677466031178082391","member":{"joined_at":"2022-09-21T23:31:59+08:00","nick":"Don Quijote","roles":["4","16"]},"id":"08d7d09df9fbcee3a31710809fd705381f48f996809a06","channel_id":"11915136","content":"<@!13944062295744523402> /接龙进度","seq":31,"timestamp":"2022-10-07T19:20:25+08:00"}, s=2, t=AT_MESSAGE_CREATE)
+java.lang.RuntimeException: 无效的命令 /接龙进度
+	at com.sewell.qqbot.game.constant.SolitaireGame$SolitaireGameEnum.lambda$acquireByName$1(SolitaireGame.java:40)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at com.sewell.qqbot.game.constant.SolitaireGame$SolitaireGameEnum.acquireByName(SolitaireGame.java:40)
+	at com.sewell.qqbot.game.idiom.SolitaireGameCoreHandle.handle(SolitaireGameCoreHandle.java:82)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.message(AtMessageSubscriber.java:107)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.messageHandle(AtMessageSubscriber.java:81)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.onSubscribe(AtMessageSubscriber.java:76)
+	at com.sewell.qqbot.websocket.handler.EventHandler.lambda$handle$0(EventHandler.java:26)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at com.sewell.qqbot.websocket.handler.EventHandler.handle(EventHandler.java:24)
+	at com.sewell.qqbot.websocket.handler.DispatchEventHandler.handle(DispatchEventHandler.java:20)
+	at com.sewell.qqbot.websocket.WebsocketDataHandler.executor(WebsocketDataHandler.java:38)
+	at com.sewell.qqbot.websocket.BotWebsocketClient.handleResult(BotWebsocketClient.java:69)
+	at com.sewell.qqbot.websocket.BotWebsocketClient.onMessage(BotWebsocketClient.java:48)
+	at org.java_websocket.client.WebSocketClient.onWebsocketMessage(WebSocketClient.java:636)
+	at org.java_websocket.drafts.Draft_6455.processFrameText(Draft_6455.java:986)
+	at org.java_websocket.drafts.Draft_6455.processFrame(Draft_6455.java:910)
+	at org.java_websocket.WebSocketImpl.decodeFrames(WebSocketImpl.java:401)
+	at org.java_websocket.WebSocketImpl.decode(WebSocketImpl.java:233)
+	at org.java_websocket.client.WebSocketClient.run(WebSocketClient.java:516)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-10-07 19:30:29 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 无效的命令：我

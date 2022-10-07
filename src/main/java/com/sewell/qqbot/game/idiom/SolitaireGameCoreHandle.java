@@ -89,22 +89,28 @@ public class SolitaireGameCoreHandle implements BotGame, ApplicationRunner {
                     reply = stopGame(gameUserKey);
                 }
                 case SOLITAIRE_DIFFICULTY_SIMPLE -> {
-                    reply = selectDifficulty(gameUserKey, 1);
+                    reply = selectDifficulty(gameUserKey, GameCode.GameDifficulty.SIMPLE);
                 }
                 case SOLITAIRE_DIFFICULTY_MID -> {
-                    reply = selectDifficulty(gameUserKey, 2);
+                    reply = selectDifficulty(gameUserKey, GameCode.GameDifficulty.MIDDLE);
                 }
                 case SOLITAIRE_DIFFICULTY_HARD -> {
-                    reply = selectDifficulty(gameUserKey, 3);
+                    reply = selectDifficulty(gameUserKey, GameCode.GameDifficulty.HARD);
                 }
                 case SOLITAIRE_ORDER_PLAYER_FIRST -> {
-                    reply = selectOrder(gameUserKey, 1);
+                    reply = selectOrder(gameUserKey, Boolean.TRUE);
                 }
                 case SOLITAIRE_ORDER_PLAYER_LAST -> {
-                    reply = selectOrder(gameUserKey, 2);
+                    reply = selectOrder(gameUserKey, Boolean.FALSE);
                 }
                 case SOLITAIRE_WORD_DESC ->{
                     reply = wordDesc(gameUserKey);
+                }
+                case SOLITAIRE_PROGRESS -> {
+                    reply = progressQuery(gameUserKey);
+                }
+                default -> {
+                    reply = GameMessage.INVALID_CMD;
                 }
             }
         } else {
@@ -118,20 +124,31 @@ public class SolitaireGameCoreHandle implements BotGame, ApplicationRunner {
         api.getMessageApi().sendMessageReference(channelId, reply, messageId);
     }
 
+    private String progressQuery(String gameUserKey) {
+        String reply = "";
+        UserGameInfo userGameInfo = checkInGame(gameUserKey);
+        if (userGameInfo == null) {
+            reply = GameMessage.NOT_BEGIN;
+            return reply;
+        }
+        reply = String.format(GameMessage.QUERY_PROGRESS, userGameInfo.getPlayerStreakWinNum(), userGameInfo.getPlayerLoseNum());
+        return reply;
+    }
+
     private String wordDesc(String gameUserKey) {
         String reply = "";
         UserGameInfo userGameInfo = checkInGame(gameUserKey);
         if (userGameInfo == null) {
-            reply = "尚未开始游戏，请输入【/成语接龙】开始游戏";
+            reply = GameMessage.NOT_BEGIN;
             return reply;
         }
         if (StringUtils.isBlank(userGameInfo.getLastWord())) {
-            reply = "尚未进行接龙，无法查询";
+            reply = GameMessage.NO_LAST_WORD;
             return reply;
         }
         Idiom idiom = wordIdiomMap.get(userGameInfo.getLastWord());
         if (idiom == null) {
-            reply = "【" + userGameInfo.getLastWord() + "】 找不到该成语!";
+            reply = String.format(GameMessage.NOT_FOUND_WORD, userGameInfo.getLastWord());
             return reply;
         }
         reply = printIdiom(idiom);
@@ -139,40 +156,35 @@ public class SolitaireGameCoreHandle implements BotGame, ApplicationRunner {
     }
 
     private String printIdiom(final Idiom idiom) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("【"+idiom.getWord()+"】\n");
-        stringBuilder.append("拼音：" + idiom.getPinyin() + "\n");
-        stringBuilder.append("释义：" + idiom.getExplanation() + "\n");
-        stringBuilder.append("出处：" + idiom.getDerivation() + "\n");
-        stringBuilder.append("举例：" + idiom.getExample());
-        return stringBuilder.toString();
+        return String.format(GameMessage.IDIOM_DICT, idiom.getWord()
+                , idiom.getPinyin(), idiom.getExplanation()
+                , idiom.getDerivation(), idiom.getExample());
     }
 
     private String playingGame(String gameUserKey, String thisPlayerWord) {
         String reply = "";
         UserGameInfo userGameInfo = checkInGame(gameUserKey);
         if (userGameInfo == null) {
-            reply = "尚未开始游戏，请输入【/成语接龙】开始游戏";
+            reply = GameMessage.NOT_BEGIN;
             return reply;
         }
         if (GameCode.GamePhase.SELECT_DIFFICULTY.equals(userGameInfo.getPhase())) {
-            reply = "请先选择难度";
+            reply = GameMessage.CHOOSE_DIFFICULTY_ALERT;
             return reply;
         }
         if (GameCode.GamePhase.SELECT_ORDER.equals(userGameInfo.getPhase())) {
-            reply = "请先选择先后手";
+            reply = GameMessage.CHOOSE_ORDER_ALERT;
             return reply;
         }
-        GameCode.GameDifficulty gameDifficulty = GameCode.GameDifficulty.acquireByCode(userGameInfo.getDifficulty());
+        GameCode.GameDifficulty gameDifficulty = userGameInfo.getDifficulty();
         //成语不合法
         if (!isValidIdiom(thisPlayerWord)) {
             userGameInfo.plusLoseNum();
             userGameInfo.setPlayerStreakWinNum(0);
-            reply = "【" + thisPlayerWord + "】不是成语!";
+            reply = String.format(GameMessage.NOT_IDIOM, thisPlayerWord);
             //判断答错次数
             if (playerLost(userGameInfo.getPlayerLoseNum(), gameDifficulty)) {
-                reply += "\n" +
-                        "累计答错" + userGameInfo.getPlayerLoseNum() + "次，你输了!";
+                reply += String.format(GameMessage.LOSE_FAILED, userGameInfo.getPlayerLoseNum());
                 gameOver(gameUserKey);
             }
             return reply;
@@ -181,11 +193,10 @@ public class SolitaireGameCoreHandle implements BotGame, ApplicationRunner {
         if (!isSolitaire(thisPlayerWord, userGameInfo.getLastWord(), gameDifficulty.getAllowFurtherSearch())) {
             userGameInfo.plusLoseNum();
             userGameInfo.setPlayerStreakWinNum(0);
-            reply = "【" + thisPlayerWord + "】不符合接龙规则!";
+            reply = String.format(GameMessage.NOT_MATCH_RULE,thisPlayerWord);
             //判断答错次数
             if (playerLost(userGameInfo.getPlayerLoseNum(), gameDifficulty)) {
-                reply += "\n" +
-                        "累计答错" + userGameInfo.getPlayerLoseNum() + "次，你输了!";
+                reply += String.format(GameMessage.LOSE_FAILED, userGameInfo.getPlayerLoseNum());
                 gameOver(gameUserKey);
             }
             return reply;
@@ -197,7 +208,7 @@ public class SolitaireGameCoreHandle implements BotGame, ApplicationRunner {
         }
 
         if (playerWon(userGameInfo.getPlayerStreakWinNum(), gameDifficulty)) {
-            reply = "连续答对"+userGameInfo.getPlayerStreakWinNum()+"次，你赢了!";
+            reply = String.format(GameMessage.RIGHT_WIN, userGameInfo.getPlayerStreakWinNum());
             gameOver(gameUserKey);
             return reply;
         }
@@ -205,7 +216,7 @@ public class SolitaireGameCoreHandle implements BotGame, ApplicationRunner {
         String thisComputerWord;
         Idiom idiom = getNextIdiom(thisPlayerWord, gameDifficulty.getAllowFurtherSearch());
         if (idiom == null) {
-            reply = "我想不出来了:( 你赢了!";
+            reply = GameMessage.AI_FAILED;
             gameOver(gameUserKey);
             return reply;
         } else {
@@ -213,7 +224,7 @@ public class SolitaireGameCoreHandle implements BotGame, ApplicationRunner {
         }
 
         if (thisComputerWord == null) {
-            reply = "我想不出来了:( 你赢了!";
+            reply = GameMessage.AI_FAILED;
             gameOver(gameUserKey);
             return reply;
         } else {
@@ -233,15 +244,14 @@ public class SolitaireGameCoreHandle implements BotGame, ApplicationRunner {
         String reply = "";
         if (checkInGame(gameUserKey) != null) {
             //已经在游戏当中
-            reply = "您已经开始游戏，请继续";
+            reply = GameMessage.GAME_ALREADY_BEGIN;
         } else {
             //不在游戏当中
             userGameMap.put(gameUserKey, new UserGameInfo());
             //请选择游戏难度
-            reply = "请选择成语接龙游戏难度：\n" +
-                    "【简单】答对" + GameCode.GameDifficulty.SIMPLE.getRightNum() + "个成语或AI接龙失败则玩家获胜，累计答错" + GameCode.GameDifficulty.SIMPLE.getFailNum() + "个成语则玩家失败，允许同音不同调 \n" +
-                    "【中等】连续答对" + GameCode.GameDifficulty.MIDDLE.getRightNum() + "个成语或AI接龙失败则玩家获胜，累计答错" + GameCode.GameDifficulty.MIDDLE.getFailNum() + "个成语则玩家失败，允许同音不同调 \n" +
-                    "【困难】连续答对" + GameCode.GameDifficulty.HARD.getRightNum() + "个成语或AI接龙失败则玩家获胜，累计答错" + GameCode.GameDifficulty.HARD.getFailNum() + "个成语则玩家失败，不允许同音不同调";
+            reply = String.format(GameMessage.CHOOSE_DIFFICULTY, GameCode.GameDifficulty.SIMPLE.getRightNum(), GameCode.GameDifficulty.SIMPLE.getFailNum(),
+                    GameCode.GameDifficulty.MIDDLE.getRightNum(), GameCode.GameDifficulty.MIDDLE.getFailNum(),
+                    GameCode.GameDifficulty.HARD.getRightNum(), GameCode.GameDifficulty.HARD.getFailNum());
         }
         return reply;
     }
@@ -251,9 +261,9 @@ public class SolitaireGameCoreHandle implements BotGame, ApplicationRunner {
             //停止游戏
             userGameMap.remove(gameUserKey);
             GameHelper.userPlayGame.remove(gameUserKey);
-            reply = "游戏已停止，感谢您的使用！";
+            reply = GameMessage.GAME_ALREADY_STOP;
         } else {
-            reply = "尚未开始，欢迎使用！";
+            reply = GameMessage.NOT_BEGIN;
         }
         return reply;
     }
@@ -266,7 +276,7 @@ public class SolitaireGameCoreHandle implements BotGame, ApplicationRunner {
         }
     }
 
-    public String selectDifficulty(String gameUserKey, Integer difficulty) {
+    public String selectDifficulty(String gameUserKey, GameCode.GameDifficulty difficulty) {
         String reply = "";
         UserGameInfo userGameInfo = checkInGame(gameUserKey);
         if (userGameInfo != null) {
@@ -275,20 +285,17 @@ public class SolitaireGameCoreHandle implements BotGame, ApplicationRunner {
                 //选择难度
                 userGameInfo.setDifficulty(difficulty);
                 userGameInfo.setPhase(GameCode.GamePhase.SELECT_ORDER);
-                reply = "已选择难度，难度设置为：【" + GameCode.GameDifficulty.acquireByCode(difficulty).getDesc() + "】\n" +
-                        "请选择先后手：\n" +
-                        "【先手】己方先出\n" +
-                        "【后手】机器人先出";
+                reply = String.format(GameMessage.CHOOSE_ORDER, difficulty.getDesc());
             } else {
-                reply = "已选择过难度，当前难度为:【" + GameCode.GameDifficulty.acquireByCode(userGameInfo.getDifficulty()) + "】请勿重新选择";
+                reply = String.format(GameMessage.NO_CHOOSE_DIFFICULTY_AGAIN, userGameInfo.getDifficulty().getDesc());
             }
         } else {
-            reply = "尚未开始，欢迎使用！";
+            reply = GameMessage.NOT_BEGIN;
         }
         return reply;
     }
 
-    private String selectOrder(String gameUserKey, Integer order) {
+    private String selectOrder(String gameUserKey, Boolean playerFirst) {
         String reply = "";
         UserGameInfo userGameInfo = checkInGame(gameUserKey);
         if (userGameInfo != null) {
@@ -296,20 +303,20 @@ public class SolitaireGameCoreHandle implements BotGame, ApplicationRunner {
             if (GameCode.GamePhase.SELECT_ORDER.equals(phase)) {
                 //选择难度
                 userGameInfo.setPhase(GameCode.GamePhase.PLAYING);
-                if (Integer.valueOf(1).equals(order)) {
+                if (playerFirst) {
                     //用户先出
-                    reply = "请您开始";
+                    reply = GameMessage.PLEASE_USER_BEGIN;
                 } else {
                     //机器人先出
                     String idiom = pickRandomIdiom();
-                    reply = "游戏开始喽！\n" + idiom;
+                    reply = String.format(GameMessage.BOT_GAME_START, idiom);
                     userGameInfo.setLastWord(idiom);
                 }
             } else {
-                reply = "无效的选择";
+                reply = GameMessage.INVALID_CHOOSE;
             }
         } else {
-            reply = "尚未开始，欢迎使用！";
+            reply = GameMessage.NOT_BEGIN;
         }
         return reply;
     }
@@ -430,7 +437,8 @@ public class SolitaireGameCoreHandle implements BotGame, ApplicationRunner {
             return true;
         }
 
-        if (!allowFurtherSearch) {//不允许同音不同调
+        //不允许同音不同调
+        if (!allowFurtherSearch) {
             return false;
         }
         //允许同音不同调
