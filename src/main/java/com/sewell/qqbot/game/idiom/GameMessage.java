@@ -10,7 +10,7 @@ public interface GameMessage {
 
     String NO_LAST_WORD = "尚未进行接龙，无法查询";
 
-    String NOT_FOUND_WORD = "【%s】 找不到该成语!";
+    String NOT_FOUND_WORD = "【%s】找不到该成语!";
 
     String CHOOSE_DIFFICULTY_ALERT = "请先选择难度";
 
