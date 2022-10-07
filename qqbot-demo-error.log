@@ -1,0 +1,168 @@
+2022-10-07 10:54:44 [main] ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The dependencies of some of the beans in the application context form a cycle:
+
+   helloSubscriber
+┌─────┐
+|  botService defined in class path resource [com/sewell/qqbot/configuration/WebsocketServiceConfiguration.class]
+↑     ↓
+|  atMessageSubscriber
+└─────┘
+
+
+Action:
+
+Despite circular references being allowed, the dependency cycle between beans could not be broken. Update your application to remove the dependency cycle.
+
+2022-10-07 11:06:01 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'botService' defined in file [/Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo/target/classes/com/sewell/qqbot/bot/BotService.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.sewell.qqbot.bot.BotService]: Constructor threw exception; nested exception is java.lang.NullPointerException: Cannot invoke "com.sewell.qqbot.properties.BotConfig.getBotAppId()" because "botConfig" is null
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.sewell.qqbot.BotDemoBootstrap.main(BotDemoBootstrap.java:14)
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.sewell.qqbot.bot.BotService]: Constructor threw exception; nested exception is java.lang.NullPointerException: Cannot invoke "com.sewell.qqbot.properties.BotConfig.getBotAppId()" because "botConfig" is null
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:224)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1326)
+	... 17 common frames omitted
+Caused by: java.lang.NullPointerException: Cannot invoke "com.sewell.qqbot.properties.BotConfig.getBotAppId()" because "botConfig" is null
+	at com.sewell.qqbot.bot.BotService.start(BotService.java:54)
+	at com.sewell.qqbot.bot.BotService.<init>(BotService.java:50)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:211)
+	... 19 common frames omitted
+2022-10-07 11:07:38 [main] ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+A component required a bean of type 'com.sewell.qqbot.properties.BotConfig' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.sewell.qqbot.properties.BotConfig' in your configuration.
+
+2022-10-07 11:08:16 [main] ERROR com.sewell.qqbot.bot.BotService - 获取 Gateway 失败! 11242 wrong bot token
+2022-10-07 11:09:24 [main] ERROR com.sewell.qqbot.bot.BotService - 获取 Gateway 失败! 11242 wrong bot token
+2022-10-07 11:12:13 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.InvalidSessionSubscriber - 鉴权失败!
+2022-10-07 11:13:08 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.InvalidSessionSubscriber - 鉴权失败!
+2022-10-07 11:15:28 [WebSocket] ERROR com.sewell.qqbot.websocket.handler.EventHandler - subscriber出现异常：payload:Payload(op=10, d={"heartbeat_interval":41250}, s=null, t=null)
+org.java_websocket.exceptions.WebsocketNotConnectedException: null
+	at org.java_websocket.WebSocketImpl.send(WebSocketImpl.java:673)
+	at org.java_websocket.WebSocketImpl.send(WebSocketImpl.java:649)
+	at org.java_websocket.client.WebSocketClient.send(WebSocketClient.java:431)
+	at com.sewell.qqbot.bot.BotService.sendIdentify(BotService.java:121)
+	at com.sewell.qqbot.bot.BotService.helloHandle(BotService.java:94)
+	at com.sewell.qqbot.websocket.subscribe.HelloSubscriber.onSubscribe(HelloSubscriber.java:25)
+	at com.sewell.qqbot.websocket.handler.EventHandler.lambda$handle$0(EventHandler.java:26)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at com.sewell.qqbot.websocket.handler.EventHandler.handle(EventHandler.java:24)
+	at com.sewell.qqbot.websocket.handler.HelloEventHandler.handle(HelloEventHandler.java:19)
+	at com.sewell.qqbot.websocket.WebsocketDataHandler.executor(WebsocketDataHandler.java:38)
+	at com.sewell.qqbot.websocket.BotWebsocketClient.handleResult(BotWebsocketClient.java:69)
+	at com.sewell.qqbot.websocket.BotWebsocketClient.onMessage(BotWebsocketClient.java:48)
+	at org.java_websocket.client.WebSocketClient.onWebsocketMessage(WebSocketClient.java:636)
+	at org.java_websocket.drafts.Draft_6455.processFrameText(Draft_6455.java:986)
+	at org.java_websocket.drafts.Draft_6455.processFrame(Draft_6455.java:910)
+	at org.java_websocket.WebSocketImpl.decodeFrames(WebSocketImpl.java:401)
+	at org.java_websocket.WebSocketImpl.decode(WebSocketImpl.java:233)
+	at org.java_websocket.client.WebSocketClient.run(WebSocketClient.java:516)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-10-07 11:22:13 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.InvalidSessionSubscriber - 鉴权失败!
+2022-10-07 11:23:33 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.InvalidSessionSubscriber - 鉴权失败!
+2022-10-07 11:24:22 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.InvalidSessionSubscriber - 鉴权失败!
+2022-10-07 11:33:31 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.InvalidSessionSubscriber - 鉴权失败!
+2022-10-07 11:36:24 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.InvalidSessionSubscriber - 鉴权失败!
+2022-10-07 11:36:24 [WebSocket] ERROR com.sewell.qqbot.websocket.BotWebsocketClient - 服务端关闭连接, 原因 4014 intent 无权限(disallowed intents)
+2022-10-07 11:40:10 [WebSocket] ERROR com.sewell.qqbot.websocket.handler.EventHandler - subscriber出现异常：payload:Payload(op=0, d={"seq_in_channel":"34","author":{"bot":false,"avatar":"https://qqchannel-profile-1251316161.file.myqcloud.com/1663764369d391a1b33ad3c1ad?t=1663764369","id":"15074255222356608300","username":"Don Quijote"},"mentions":[{"bot":true,"avatar":"http://thirdqq.qlogo.cn/g?b=oidb&k=zas5knOfAIROuJnu09hKOA&s=0&t=1663774688","id":"13944062295744523402","username":"sewell测试-测试中"}],"guild_id":"1677466031178082391","member":{"joined_at":"2022-09-21T23:31:59+08:00","nick":"Don Quijote","roles":["4","15"]},"id":"08d7d09df9fbcee3a31710e8d2b40538224899bffe9906","channel_id":"11348328","content":"<@!13944062295744523402> threads","seq":34,"timestamp":"2022-10-07T11:40:09+08:00"}, s=3, t=AT_MESSAGE_CREATE)
+java.lang.NullPointerException: Cannot invoke "com.sewell.qqbot.properties.BotConfig.getBotAppId()" because "accessInfo" is null
+	at com.sewell.qqbot.api.BaseApi.<init>(BaseApi.java:34)
+	at com.sewell.qqbot.api.ForumApi.<init>(ForumApi.java:37)
+	at com.sewell.qqbot.api.ApiManager.getForumApi(ApiManager.java:120)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.message(AtMessageSubscriber.java:84)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.messageHandle(AtMessageSubscriber.java:70)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.onSubscribe(AtMessageSubscriber.java:65)
+	at com.sewell.qqbot.websocket.handler.EventHandler.lambda$handle$0(EventHandler.java:26)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at com.sewell.qqbot.websocket.handler.EventHandler.handle(EventHandler.java:24)
+	at com.sewell.qqbot.websocket.handler.DispatchEventHandler.handle(DispatchEventHandler.java:20)
+	at com.sewell.qqbot.websocket.WebsocketDataHandler.executor(WebsocketDataHandler.java:38)
+	at com.sewell.qqbot.websocket.BotWebsocketClient.handleResult(BotWebsocketClient.java:69)
+	at com.sewell.qqbot.websocket.BotWebsocketClient.onMessage(BotWebsocketClient.java:48)
+	at org.java_websocket.client.WebSocketClient.onWebsocketMessage(WebSocketClient.java:636)
+	at org.java_websocket.drafts.Draft_6455.processFrameText(Draft_6455.java:986)
+	at org.java_websocket.drafts.Draft_6455.processFrame(Draft_6455.java:910)
+	at org.java_websocket.WebSocketImpl.decodeFrames(WebSocketImpl.java:401)
+	at org.java_websocket.WebSocketImpl.decode(WebSocketImpl.java:233)
+	at org.java_websocket.client.WebSocketClient.run(WebSocketClient.java:516)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-10-07 11:41:20 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 11:41:20 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: 569567dd7f17b3959af9755ff5e9126a
+2022-10-07 11:41:20 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/4348967/threads
+2022-10-07 11:41:20 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 401
+2022-10-07 11:41:20 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"message":"check app privilege not pass","code":11253}
+2022-10-07 11:41:20 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 11253 没有应用权限(check app privilege not pass)
+2022-10-07 11:42:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 11:42:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: 534016c7e0524e1d12316df04e9bdc32
+2022-10-07 11:42:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11348328/messages
+2022-10-07 11:42:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 11:42:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":50056,"message":"raw markdown not allowed"}
+2022-10-07 11:42:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"markdown":{"content":"测试"}}
+2022-10-07 11:42:21 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 50056 未知错误(raw markdown not allowed)(raw markdown not allowed)
+2022-10-07 11:42:33 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 11:42:33 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: 07ad69edf15e486f54f471b7ca83a419
+2022-10-07 11:42:33 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11348328/messages
+2022-10-07 11:42:33 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 403
+2022-10-07 11:42:33 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304003,"message":"url not allowed"}
+2022-10-07 11:42:33 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"msg_id":"08d7d09df9fbcee3a31710e8d2b405382848a7c0fe9906","content":"https://www.qq.com"}
+2022-10-07 11:42:33 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304003 URL未报备(url not allowed)
+2022-10-07 11:44:13 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 11:44:13 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: 4b1832485bb407dbdef326780919b146
+2022-10-07 11:44:13 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /guilds/1677466031178082391/members
+2022-10-07 11:44:13 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 401
+2022-10-07 11:44:13 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"message":"check app privilege not pass","code":11253}
+2022-10-07 11:44:13 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 11253 没有应用权限(check app privilege not pass)
+2022-10-07 11:44:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 11:44:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: bf200da0a8e83440fbdb66a4ba47e4d3
+2022-10-07 11:44:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11348328/members/15074255222356608300/permissions
+2022-10-07 11:44:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 11:44:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":301003,"message":"put channel permission error"}
+2022-10-07 11:44:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"add":"1"}
+2022-10-07 11:44:21 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 301003 未知错误(put channel permission error)(put channel permission error)
+2022-10-07 11:44:57 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 11:44:57 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: acba5a05f02ab43fca6865e12a1e7c79
+2022-10-07 11:44:57 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11348328/messages
+2022-10-07 11:44:57 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 403
+2022-10-07 11:44:57 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304004,"message":"no permission to use this ark template"}
+2022-10-07 11:44:57 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"ark":{"kv":[{"key":"#DESC#"},{"key":"#PROMPT#"},{"key":"#TITLE#"},{"key":"#METADESC#"},{"key":"#IMG#"},{"key":"#LINK#"},{"key":"#SUBTITLE#"}],"templateId":24},"msg_id":"08d7d09df9fbcee3a31710e8d2b405385b48b8c1fe9906"}
+2022-10-07 11:44:57 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304004 没有发送Ark消息权限(no permission to use this ark template)

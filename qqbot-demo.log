@@ -1,0 +1,380 @@
+2022-10-07 10:54:43 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Starting BotDemoBootstrap using Java 17.0.4 on SewelldeMacBook-Pro.local with PID 63203 (/Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo/target/classes started by sewell in /Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo)
+2022-10-07 10:54:43 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - No active profile set, falling back to 1 default profile: "default"
+2022-10-07 10:54:44 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8899 (http)
+2022-10-07 10:54:44 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8899"]
+2022-10-07 10:54:44 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-10-07 10:54:44 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-07 10:54:44 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-10-07 10:54:44 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1330 ms
+2022-10-07 10:54:44 [main] WARN  org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'helloSubscriber': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'botService' defined in class path resource [com/sewell/qqbot/configuration/WebsocketServiceConfiguration.class]: Unsatisfied dependency expressed through method 'botService' parameter 1; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'atMessageSubscriber': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'botService': Requested bean is currently in creation: Is there an unresolvable circular reference?
+2022-10-07 10:54:44 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2022-10-07 10:54:44 [main] INFO  org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-10-07 10:54:44 [main] ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The dependencies of some of the beans in the application context form a cycle:
+
+   helloSubscriber
+┌─────┐
+|  botService defined in class path resource [com/sewell/qqbot/configuration/WebsocketServiceConfiguration.class]
+↑     ↓
+|  atMessageSubscriber
+└─────┘
+
+
+Action:
+
+Despite circular references being allowed, the dependency cycle between beans could not be broken. Update your application to remove the dependency cycle.
+
+2022-10-07 11:06:00 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Starting BotDemoBootstrap using Java 17.0.4 on SewelldeMacBook-Pro.local with PID 65327 (/Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo/target/classes started by sewell in /Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo)
+2022-10-07 11:06:00 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - No active profile set, falling back to 1 default profile: "default"
+2022-10-07 11:06:01 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8899 (http)
+2022-10-07 11:06:01 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8899"]
+2022-10-07 11:06:01 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-10-07 11:06:01 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-07 11:06:01 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-10-07 11:06:01 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1208 ms
+2022-10-07 11:06:01 [main] WARN  org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'botService' defined in file [/Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo/target/classes/com/sewell/qqbot/bot/BotService.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.sewell.qqbot.bot.BotService]: Constructor threw exception; nested exception is java.lang.NullPointerException: Cannot invoke "com.sewell.qqbot.properties.BotConfig.getBotAppId()" because "botConfig" is null
+2022-10-07 11:06:01 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2022-10-07 11:06:01 [main] INFO  org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-10-07 11:06:01 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'botService' defined in file [/Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo/target/classes/com/sewell/qqbot/bot/BotService.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.sewell.qqbot.bot.BotService]: Constructor threw exception; nested exception is java.lang.NullPointerException: Cannot invoke "com.sewell.qqbot.properties.BotConfig.getBotAppId()" because "botConfig" is null
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.sewell.qqbot.BotDemoBootstrap.main(BotDemoBootstrap.java:14)
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.sewell.qqbot.bot.BotService]: Constructor threw exception; nested exception is java.lang.NullPointerException: Cannot invoke "com.sewell.qqbot.properties.BotConfig.getBotAppId()" because "botConfig" is null
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:224)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1326)
+	... 17 common frames omitted
+Caused by: java.lang.NullPointerException: Cannot invoke "com.sewell.qqbot.properties.BotConfig.getBotAppId()" because "botConfig" is null
+	at com.sewell.qqbot.bot.BotService.start(BotService.java:54)
+	at com.sewell.qqbot.bot.BotService.<init>(BotService.java:50)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:211)
+	... 19 common frames omitted
+2022-10-07 11:07:36 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Starting BotDemoBootstrap using Java 17.0.4 on SewelldeMacBook-Pro.local with PID 65640 (/Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo/target/classes started by sewell in /Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo)
+2022-10-07 11:07:36 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - No active profile set, falling back to 1 default profile: "default"
+2022-10-07 11:07:37 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8899 (http)
+2022-10-07 11:07:37 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8899"]
+2022-10-07 11:07:37 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-10-07 11:07:37 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-07 11:07:37 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-10-07 11:07:37 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1316 ms
+2022-10-07 11:07:38 [main] WARN  org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'botService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.sewell.qqbot.properties.BotConfig' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup="", name="", description="", authenticationType=CONTAINER, type=java.lang.Object.class, mappedName="")}
+2022-10-07 11:07:38 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2022-10-07 11:07:38 [main] INFO  org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-10-07 11:07:38 [main] ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+A component required a bean of type 'com.sewell.qqbot.properties.BotConfig' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.sewell.qqbot.properties.BotConfig' in your configuration.
+
+2022-10-07 11:08:14 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Starting BotDemoBootstrap using Java 17.0.4 on SewelldeMacBook-Pro.local with PID 65757 (/Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo/target/classes started by sewell in /Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo)
+2022-10-07 11:08:14 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - No active profile set, falling back to 1 default profile: "default"
+2022-10-07 11:08:15 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8899 (http)
+2022-10-07 11:08:15 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8899"]
+2022-10-07 11:08:15 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-10-07 11:08:15 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-07 11:08:15 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-10-07 11:08:15 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1155 ms
+2022-10-07 11:08:16 [main] ERROR com.sewell.qqbot.bot.BotService - 获取 Gateway 失败! 11242 wrong bot token
+2022-10-07 11:09:12 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Starting BotDemoBootstrap using Java 17.0.4 on SewelldeMacBook-Pro.local with PID 65946 (/Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo/target/classes started by sewell in /Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo)
+2022-10-07 11:09:12 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - No active profile set, falling back to 1 default profile: "default"
+2022-10-07 11:09:13 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8899 (http)
+2022-10-07 11:09:13 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8899"]
+2022-10-07 11:09:13 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-10-07 11:09:13 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-07 11:09:13 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-10-07 11:09:13 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1080 ms
+2022-10-07 11:09:24 [main] ERROR com.sewell.qqbot.bot.BotService - 获取 Gateway 失败! 11242 wrong bot token
+2022-10-07 11:12:06 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Starting BotDemoBootstrap using Java 17.0.4 on SewelldeMacBook-Pro.local with PID 66493 (/Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo/target/classes started by sewell in /Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo)
+2022-10-07 11:12:06 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - No active profile set, falling back to 1 default profile: "default"
+2022-10-07 11:12:07 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8899 (http)
+2022-10-07 11:12:07 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8899"]
+2022-10-07 11:12:07 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-10-07 11:12:07 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-07 11:12:07 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-10-07 11:12:07 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1123 ms
+2022-10-07 11:12:13 [main] INFO  com.sewell.qqbot.bot.BotService - 网关地址: wss://api.sgroup.qq.com/websocket, 建议分片数: 1
+2022-10-07 11:12:13 [WebSocket] INFO  com.sewell.qqbot.websocket.BotWebsocketClient - 已连接至网关!
+2022-10-07 11:12:13 [main] INFO  com.sewell.qqbot.bot.BotService - websocket connection is successful.....
+2022-10-07 11:12:13 [WebSocket] INFO  com.sewell.qqbot.bot.BotService - 正在发送鉴权...
+2022-10-07 11:12:13 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.InvalidSessionSubscriber - 鉴权失败!
+2022-10-07 11:12:13 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8899"]
+2022-10-07 11:12:13 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8899 (http) with context path ''
+2022-10-07 11:12:13 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Started BotDemoBootstrap in 7.436 seconds (JVM running for 8.477)
+2022-10-07 11:13:04 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Starting BotDemoBootstrap using Java 17.0.4 on SewelldeMacBook-Pro.local with PID 66677 (/Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo/target/classes started by sewell in /Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo)
+2022-10-07 11:13:04 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - No active profile set, falling back to 1 default profile: "default"
+2022-10-07 11:13:05 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8899 (http)
+2022-10-07 11:13:05 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8899"]
+2022-10-07 11:13:05 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-10-07 11:13:05 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-07 11:13:05 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-10-07 11:13:05 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1059 ms
+2022-10-07 11:13:08 [main] INFO  com.sewell.qqbot.bot.BotService - 网关地址: wss://sandbox.api.sgroup.qq.com/websocket, 建议分片数: 1
+2022-10-07 11:13:08 [WebSocket] INFO  com.sewell.qqbot.websocket.BotWebsocketClient - 已连接至网关!
+2022-10-07 11:13:08 [main] INFO  com.sewell.qqbot.bot.BotService - websocket connection is successful.....
+2022-10-07 11:13:08 [WebSocket] INFO  com.sewell.qqbot.bot.BotService - 正在发送鉴权...
+2022-10-07 11:13:08 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.InvalidSessionSubscriber - 鉴权失败!
+2022-10-07 11:13:09 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8899"]
+2022-10-07 11:13:09 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8899 (http) with context path ''
+2022-10-07 11:13:09 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Started BotDemoBootstrap in 5.445 seconds (JVM running for 6.478)
+2022-10-07 11:13:28 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Starting BotDemoBootstrap using Java 17.0.4 on SewelldeMacBook-Pro.local with PID 66762 (/Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo/target/classes started by sewell in /Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo)
+2022-10-07 11:13:28 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - No active profile set, falling back to 1 default profile: "default"
+2022-10-07 11:13:29 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8899 (http)
+2022-10-07 11:13:29 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8899"]
+2022-10-07 11:13:29 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-10-07 11:13:29 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-07 11:13:29 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-10-07 11:13:29 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1129 ms
+2022-10-07 11:13:33 [main] INFO  com.sewell.qqbot.bot.BotService - 网关地址: wss://sandbox.api.sgroup.qq.com/websocket, 建议分片数: 1
+2022-10-07 11:13:33 [WebSocket] INFO  com.sewell.qqbot.websocket.BotWebsocketClient - 已连接至网关!
+2022-10-07 11:13:33 [main] INFO  com.sewell.qqbot.bot.BotService - websocket connection is successful.....
+2022-10-07 11:13:33 [WebSocket] INFO  com.sewell.qqbot.bot.BotService - 正在发送鉴权...
+2022-10-07 11:15:28 [WebSocket] ERROR com.sewell.qqbot.websocket.handler.EventHandler - subscriber出现异常：payload:Payload(op=10, d={"heartbeat_interval":41250}, s=null, t=null)
+org.java_websocket.exceptions.WebsocketNotConnectedException: null
+	at org.java_websocket.WebSocketImpl.send(WebSocketImpl.java:673)
+	at org.java_websocket.WebSocketImpl.send(WebSocketImpl.java:649)
+	at org.java_websocket.client.WebSocketClient.send(WebSocketClient.java:431)
+	at com.sewell.qqbot.bot.BotService.sendIdentify(BotService.java:121)
+	at com.sewell.qqbot.bot.BotService.helloHandle(BotService.java:94)
+	at com.sewell.qqbot.websocket.subscribe.HelloSubscriber.onSubscribe(HelloSubscriber.java:25)
+	at com.sewell.qqbot.websocket.handler.EventHandler.lambda$handle$0(EventHandler.java:26)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at com.sewell.qqbot.websocket.handler.EventHandler.handle(EventHandler.java:24)
+	at com.sewell.qqbot.websocket.handler.HelloEventHandler.handle(HelloEventHandler.java:19)
+	at com.sewell.qqbot.websocket.WebsocketDataHandler.executor(WebsocketDataHandler.java:38)
+	at com.sewell.qqbot.websocket.BotWebsocketClient.handleResult(BotWebsocketClient.java:69)
+	at com.sewell.qqbot.websocket.BotWebsocketClient.onMessage(BotWebsocketClient.java:48)
+	at org.java_websocket.client.WebSocketClient.onWebsocketMessage(WebSocketClient.java:636)
+	at org.java_websocket.drafts.Draft_6455.processFrameText(Draft_6455.java:986)
+	at org.java_websocket.drafts.Draft_6455.processFrame(Draft_6455.java:910)
+	at org.java_websocket.WebSocketImpl.decodeFrames(WebSocketImpl.java:401)
+	at org.java_websocket.WebSocketImpl.decode(WebSocketImpl.java:233)
+	at org.java_websocket.client.WebSocketClient.run(WebSocketClient.java:516)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-10-07 11:15:28 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8899"]
+2022-10-07 11:15:28 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8899 (http) with context path ''
+2022-10-07 11:15:28 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Started BotDemoBootstrap in 120.64 seconds (JVM running for 121.735)
+2022-10-07 11:18:41 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Starting BotDemoBootstrap using Java 17.0.4 on SewelldeMacBook-Pro.local with PID 67734 (/Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo/target/classes started by sewell in /Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo)
+2022-10-07 11:18:41 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - No active profile set, falling back to 1 default profile: "default"
+2022-10-07 11:18:42 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8899 (http)
+2022-10-07 11:18:42 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8899"]
+2022-10-07 11:18:42 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-10-07 11:18:42 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-07 11:18:42 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-10-07 11:18:42 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1231 ms
+2022-10-07 11:18:45 [main] INFO  com.sewell.qqbot.bot.BotService - 网关地址: wss://sandbox.api.sgroup.qq.com/websocket, 建议分片数: 1
+2022-10-07 11:18:49 [WebSocket] INFO  com.sewell.qqbot.websocket.BotWebsocketClient - 已连接至网关!
+2022-10-07 11:18:52 [main] INFO  com.sewell.qqbot.bot.BotService - websocket connection is successful.....
+2022-10-07 11:18:52 [WebSocket] INFO  com.sewell.qqbot.bot.BotService - 正在发送鉴权...
+2022-10-07 11:20:19 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8899"]
+2022-10-07 11:20:19 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8899 (http) with context path ''
+2022-10-07 11:20:19 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Started BotDemoBootstrap in 99.007 seconds (JVM running for 100.209)
+2022-10-07 11:21:54 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Starting BotDemoBootstrap using Java 17.0.4 on SewelldeMacBook-Pro.local with PID 68370 (/Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo/target/classes started by sewell in /Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo)
+2022-10-07 11:21:54 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - No active profile set, falling back to 1 default profile: "default"
+2022-10-07 11:21:55 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8899 (http)
+2022-10-07 11:21:55 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8899"]
+2022-10-07 11:21:55 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-10-07 11:21:55 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-07 11:21:55 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-10-07 11:21:55 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1170 ms
+2022-10-07 11:21:58 [main] INFO  com.sewell.qqbot.bot.BotService - 网关地址: wss://api.sgroup.qq.com/websocket, 建议分片数: 1
+2022-10-07 11:22:02 [WebSocket] INFO  com.sewell.qqbot.websocket.BotWebsocketClient - 已连接至网关!
+2022-10-07 11:22:02 [main] INFO  com.sewell.qqbot.bot.BotService - websocket connection is successful.....
+2022-10-07 11:22:04 [WebSocket] INFO  com.sewell.qqbot.bot.BotService - 正在发送鉴权...
+2022-10-07 11:22:13 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.InvalidSessionSubscriber - 鉴权失败!
+2022-10-07 11:22:14 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8899"]
+2022-10-07 11:22:14 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8899 (http) with context path ''
+2022-10-07 11:22:14 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Started BotDemoBootstrap in 20.358 seconds (JVM running for 21.294)
+2022-10-07 11:22:38 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Starting BotDemoBootstrap using Java 17.0.4 on SewelldeMacBook-Pro.local with PID 68517 (/Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo/target/classes started by sewell in /Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo)
+2022-10-07 11:22:38 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - No active profile set, falling back to 1 default profile: "default"
+2022-10-07 11:22:39 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8899 (http)
+2022-10-07 11:22:39 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8899"]
+2022-10-07 11:22:39 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-10-07 11:22:39 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-07 11:22:39 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-10-07 11:22:39 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1066 ms
+2022-10-07 11:22:43 [main] INFO  com.sewell.qqbot.bot.BotService - 网关地址: wss://api.sgroup.qq.com/websocket, 建议分片数: 1
+2022-10-07 11:22:44 [WebSocket] INFO  com.sewell.qqbot.websocket.BotWebsocketClient - 已连接至网关!
+2022-10-07 11:22:44 [main] INFO  com.sewell.qqbot.bot.BotService - websocket connection is successful.....
+2022-10-07 11:22:45 [WebSocket] INFO  com.sewell.qqbot.bot.BotService - 正在发送鉴权...
+2022-10-07 11:23:33 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.InvalidSessionSubscriber - 鉴权失败!
+2022-10-07 11:23:33 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8899"]
+2022-10-07 11:23:33 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8899 (http) with context path ''
+2022-10-07 11:23:33 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Started BotDemoBootstrap in 55.186 seconds (JVM running for 56.236)
+2022-10-07 11:24:13 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Starting BotDemoBootstrap using Java 17.0.4 on SewelldeMacBook-Pro.local with PID 68813 (/Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo/target/classes started by sewell in /Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo)
+2022-10-07 11:24:13 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - No active profile set, falling back to 1 default profile: "default"
+2022-10-07 11:24:14 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8899 (http)
+2022-10-07 11:24:14 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8899"]
+2022-10-07 11:24:14 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-10-07 11:24:14 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-07 11:24:14 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-10-07 11:24:14 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1055 ms
+2022-10-07 11:24:17 [main] INFO  com.sewell.qqbot.bot.BotService - 网关地址: wss://api.sgroup.qq.com/websocket, 建议分片数: 1
+2022-10-07 11:24:18 [WebSocket] INFO  com.sewell.qqbot.websocket.BotWebsocketClient - 已连接至网关!
+2022-10-07 11:24:18 [main] INFO  com.sewell.qqbot.bot.BotService - websocket connection is successful.....
+2022-10-07 11:24:19 [WebSocket] INFO  com.sewell.qqbot.bot.BotService - 正在发送鉴权...
+2022-10-07 11:24:22 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.InvalidSessionSubscriber - 鉴权失败!
+2022-10-07 11:24:22 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8899"]
+2022-10-07 11:24:22 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8899 (http) with context path ''
+2022-10-07 11:24:22 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Started BotDemoBootstrap in 9.88 seconds (JVM running for 10.885)
+2022-10-07 11:33:22 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Starting BotDemoBootstrap using Java 17.0.4 on SewelldeMacBook-Pro.local with PID 70609 (/Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo/target/classes started by sewell in /Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo)
+2022-10-07 11:33:22 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - No active profile set, falling back to 1 default profile: "default"
+2022-10-07 11:33:26 [main] INFO  com.sewell.qqbot.bot.BotService - 网关地址: wss://api.sgroup.qq.com/websocket, 建议分片数: 1
+2022-10-07 11:33:27 [WebSocket] INFO  com.sewell.qqbot.websocket.BotWebsocketClient - 已连接至网关!
+2022-10-07 11:33:27 [main] INFO  com.sewell.qqbot.bot.BotService - websocket connection is successful.....
+2022-10-07 11:33:28 [WebSocket] INFO  com.sewell.qqbot.bot.BotService - 正在发送鉴权...
+2022-10-07 11:33:31 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.InvalidSessionSubscriber - 鉴权失败!
+2022-10-07 11:33:31 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Started BotDemoBootstrap in 9.443 seconds (JVM running for 10.529)
+2022-10-07 11:36:12 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Starting BotDemoBootstrap using Java 17.0.4 on SewelldeMacBook-Pro.local with PID 71150 (/Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo/target/classes started by sewell in /Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo)
+2022-10-07 11:36:12 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - No active profile set, falling back to 1 default profile: "default"
+2022-10-07 11:36:16 [main] INFO  com.sewell.qqbot.bot.BotService - 网关地址: wss://api.sgroup.qq.com/websocket, 建议分片数: 1
+2022-10-07 11:36:18 [WebSocket] INFO  com.sewell.qqbot.websocket.BotWebsocketClient - 已连接至网关!
+2022-10-07 11:36:18 [main] INFO  com.sewell.qqbot.bot.BotService - websocket connection is successful.....
+2022-10-07 11:36:19 [WebSocket] INFO  com.sewell.qqbot.bot.BotService - 正在发送鉴权...
+2022-10-07 11:36:24 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.InvalidSessionSubscriber - 鉴权失败!
+2022-10-07 11:36:24 [WebSocket] ERROR com.sewell.qqbot.websocket.BotWebsocketClient - 服务端关闭连接, 原因 4014 intent 无权限(disallowed intents)
+2022-10-07 11:39:17 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Starting BotDemoBootstrap using Java 17.0.4 on SewelldeMacBook-Pro.local with PID 71767 (/Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo/target/classes started by sewell in /Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo)
+2022-10-07 11:39:17 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - No active profile set, falling back to 1 default profile: "default"
+2022-10-07 11:39:18 [main] INFO  com.sewell.qqbot.bot.BotService - 网关地址: wss://api.sgroup.qq.com/websocket, 建议分片数: 1
+2022-10-07 11:39:20 [WebSocket] INFO  com.sewell.qqbot.websocket.BotWebsocketClient - 已连接至网关!
+2022-10-07 11:39:20 [main] INFO  com.sewell.qqbot.bot.BotService - websocket connection is successful.....
+2022-10-07 11:39:20 [WebSocket] INFO  com.sewell.qqbot.bot.BotService - 正在发送鉴权...
+2022-10-07 11:39:23 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Started BotDemoBootstrap in 6.526 seconds (JVM running for 7.696)
+2022-10-07 11:39:23 [WebSocket] INFO  com.sewell.qqbot.websocket.subscribe.dispatch.CommonMsgSubscriber - 鉴权成功, 机器人已上线!
+2022-10-07 11:39:41 [WebSocket] INFO  com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - [AtMessage]: 频道(1677466031178082391) 子频道(11348328) Don Quijote(15074255222356608300): <@!13944062295744523402> 天气
+2022-10-07 11:40:10 [WebSocket] INFO  com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - [AtMessage]: 频道(1677466031178082391) 子频道(11348328) Don Quijote(15074255222356608300): <@!13944062295744523402> threads
+2022-10-07 11:40:10 [WebSocket] ERROR com.sewell.qqbot.websocket.handler.EventHandler - subscriber出现异常：payload:Payload(op=0, d={"seq_in_channel":"34","author":{"bot":false,"avatar":"https://qqchannel-profile-1251316161.file.myqcloud.com/1663764369d391a1b33ad3c1ad?t=1663764369","id":"15074255222356608300","username":"Don Quijote"},"mentions":[{"bot":true,"avatar":"http://thirdqq.qlogo.cn/g?b=oidb&k=zas5knOfAIROuJnu09hKOA&s=0&t=1663774688","id":"13944062295744523402","username":"sewell测试-测试中"}],"guild_id":"1677466031178082391","member":{"joined_at":"2022-09-21T23:31:59+08:00","nick":"Don Quijote","roles":["4","15"]},"id":"08d7d09df9fbcee3a31710e8d2b40538224899bffe9906","channel_id":"11348328","content":"<@!13944062295744523402> threads","seq":34,"timestamp":"2022-10-07T11:40:09+08:00"}, s=3, t=AT_MESSAGE_CREATE)
+java.lang.NullPointerException: Cannot invoke "com.sewell.qqbot.properties.BotConfig.getBotAppId()" because "accessInfo" is null
+	at com.sewell.qqbot.api.BaseApi.<init>(BaseApi.java:34)
+	at com.sewell.qqbot.api.ForumApi.<init>(ForumApi.java:37)
+	at com.sewell.qqbot.api.ApiManager.getForumApi(ApiManager.java:120)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.message(AtMessageSubscriber.java:84)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.messageHandle(AtMessageSubscriber.java:70)
+	at com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber.onSubscribe(AtMessageSubscriber.java:65)
+	at com.sewell.qqbot.websocket.handler.EventHandler.lambda$handle$0(EventHandler.java:26)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at com.sewell.qqbot.websocket.handler.EventHandler.handle(EventHandler.java:24)
+	at com.sewell.qqbot.websocket.handler.DispatchEventHandler.handle(DispatchEventHandler.java:20)
+	at com.sewell.qqbot.websocket.WebsocketDataHandler.executor(WebsocketDataHandler.java:38)
+	at com.sewell.qqbot.websocket.BotWebsocketClient.handleResult(BotWebsocketClient.java:69)
+	at com.sewell.qqbot.websocket.BotWebsocketClient.onMessage(BotWebsocketClient.java:48)
+	at org.java_websocket.client.WebSocketClient.onWebsocketMessage(WebSocketClient.java:636)
+	at org.java_websocket.drafts.Draft_6455.processFrameText(Draft_6455.java:986)
+	at org.java_websocket.drafts.Draft_6455.processFrame(Draft_6455.java:910)
+	at org.java_websocket.WebSocketImpl.decodeFrames(WebSocketImpl.java:401)
+	at org.java_websocket.WebSocketImpl.decode(WebSocketImpl.java:233)
+	at org.java_websocket.client.WebSocketClient.run(WebSocketClient.java:516)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-10-07 11:40:52 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Starting BotDemoBootstrap using Java 17.0.4 on SewelldeMacBook-Pro.local with PID 72077 (/Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo/target/classes started by sewell in /Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo)
+2022-10-07 11:40:52 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - No active profile set, falling back to 1 default profile: "default"
+2022-10-07 11:40:53 [main] INFO  com.sewell.qqbot.bot.BotService - 网关地址: wss://api.sgroup.qq.com/websocket, 建议分片数: 1
+2022-10-07 11:40:56 [WebSocket] INFO  com.sewell.qqbot.websocket.BotWebsocketClient - 已连接至网关!
+2022-10-07 11:40:56 [main] INFO  com.sewell.qqbot.bot.BotService - websocket connection is successful.....
+2022-10-07 11:40:56 [WebSocket] INFO  com.sewell.qqbot.bot.BotService - 正在发送鉴权...
+2022-10-07 11:41:01 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Started BotDemoBootstrap in 9.547 seconds (JVM running for 11.087)
+2022-10-07 11:41:01 [WebSocket] INFO  com.sewell.qqbot.websocket.subscribe.dispatch.CommonMsgSubscriber - 鉴权成功, 机器人已上线!
+2022-10-07 11:41:20 [WebSocket] INFO  com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - [AtMessage]: 频道(1677466031178082391) 子频道(11348328) Don Quijote(15074255222356608300): <@!13944062295744523402> threads
+2022-10-07 11:41:20 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 11:41:20 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: 569567dd7f17b3959af9755ff5e9126a
+2022-10-07 11:41:20 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/4348967/threads
+2022-10-07 11:41:20 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 401
+2022-10-07 11:41:20 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"message":"check app privilege not pass","code":11253}
+2022-10-07 11:41:20 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 11253 没有应用权限(check app privilege not pass)
+2022-10-07 11:42:10 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Starting BotDemoBootstrap using Java 17.0.4 on SewelldeMacBook-Pro.local with PID 72324 (/Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo/target/classes started by sewell in /Users/sewell/IdeaProjects/private-work/sewell_qqbot_demo)
+2022-10-07 11:42:10 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - No active profile set, falling back to 1 default profile: "default"
+2022-10-07 11:42:11 [main] INFO  com.sewell.qqbot.bot.BotService - 网关地址: wss://api.sgroup.qq.com/websocket, 建议分片数: 1
+2022-10-07 11:42:11 [WebSocket] INFO  com.sewell.qqbot.websocket.BotWebsocketClient - 已连接至网关!
+2022-10-07 11:42:11 [main] INFO  com.sewell.qqbot.bot.BotService - websocket connection is successful.....
+2022-10-07 11:42:11 [WebSocket] INFO  com.sewell.qqbot.bot.BotService - 正在发送鉴权...
+2022-10-07 11:42:11 [main] INFO  com.sewell.qqbot.BotDemoBootstrap - Started BotDemoBootstrap in 2.001 seconds (JVM running for 3.37)
+2022-10-07 11:42:11 [WebSocket] INFO  com.sewell.qqbot.websocket.subscribe.dispatch.CommonMsgSubscriber - 鉴权成功, 机器人已上线!
+2022-10-07 11:42:20 [WebSocket] INFO  com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - [AtMessage]: 频道(1677466031178082391) 子频道(11348328) Don Quijote(15074255222356608300): <@!13944062295744523402> md
+2022-10-07 11:42:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 11:42:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: 534016c7e0524e1d12316df04e9bdc32
+2022-10-07 11:42:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11348328/messages
+2022-10-07 11:42:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 11:42:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":50056,"message":"raw markdown not allowed"}
+2022-10-07 11:42:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"markdown":{"content":"测试"}}
+2022-10-07 11:42:21 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 50056 未知错误(raw markdown not allowed)(raw markdown not allowed)
+2022-10-07 11:42:32 [WebSocket] INFO  com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - [AtMessage]: 频道(1677466031178082391) 子频道(11348328) Don Quijote(15074255222356608300): <@!13944062295744523402> error
+2022-10-07 11:42:33 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 11:42:33 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: 07ad69edf15e486f54f471b7ca83a419
+2022-10-07 11:42:33 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11348328/messages
+2022-10-07 11:42:33 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 403
+2022-10-07 11:42:33 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304003,"message":"url not allowed"}
+2022-10-07 11:42:33 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"msg_id":"08d7d09df9fbcee3a31710e8d2b405382848a7c0fe9906","content":"https://www.qq.com"}
+2022-10-07 11:42:33 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304003 URL未报备(url not allowed)
+2022-10-07 11:42:57 [WebSocket] INFO  com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - [AtMessage]: 频道(1677466031178082391) 子频道(11348328) Don Quijote(15074255222356608300): <@!13944062295744523402> apiList
+2022-10-07 11:43:25 [WebSocket] INFO  com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - [AtMessage]: 频道(1677466031178082391) 子频道(11348328) Don Quijote(15074255222356608300): <@!13944062295744523402> dm
+2022-10-07 11:43:25 [WebSocket] WARN  com.sewell.qqbot.api.BaseApi - API异步请求成功: {"code":304023,"message":"push message is waiting for audit now","data":{"message_audit":{"audit_id":"66e6dd88-94f6-48cf-a19d-2c017bbe0e33"}}}
+2022-10-07 11:44:02 [WebSocket] INFO  com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - [AtMessage]: 频道(1677466031178082391) 子频道(11348328) Don Quijote(15074255222356608300): <@!13944062295744523402> push
+2022-10-07 11:44:02 [WebSocket] WARN  com.sewell.qqbot.api.BaseApi - API异步请求成功: {"code":304023,"message":"push message is waiting for audit now","data":{"message_audit":{"audit_id":"b55ef821-b451-4c05-ac77-102feccb45a9"}}}
+2022-10-07 11:44:13 [WebSocket] INFO  com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - [AtMessage]: 频道(1677466031178082391) 子频道(11348328) Don Quijote(15074255222356608300): <@!13944062295744523402> members
+2022-10-07 11:44:13 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 11:44:13 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: 4b1832485bb407dbdef326780919b146
+2022-10-07 11:44:13 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /guilds/1677466031178082391/members
+2022-10-07 11:44:13 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 401
+2022-10-07 11:44:13 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"message":"check app privilege not pass","code":11253}
+2022-10-07 11:44:13 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 11253 没有应用权限(check app privilege not pass)
+2022-10-07 11:44:21 [WebSocket] INFO  com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - [AtMessage]: 频道(1677466031178082391) 子频道(11348328) Don Quijote(15074255222356608300): <@!13944062295744523402> info
+2022-10-07 11:44:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 11:44:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: bf200da0a8e83440fbdb66a4ba47e4d3
+2022-10-07 11:44:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11348328/members/15074255222356608300/permissions
+2022-10-07 11:44:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 500
+2022-10-07 11:44:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":301003,"message":"put channel permission error"}
+2022-10-07 11:44:21 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"add":"1"}
+2022-10-07 11:44:21 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 301003 未知错误(put channel permission error)(put channel permission error)
+2022-10-07 11:44:35 [WebSocket] INFO  com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - [AtMessage]: 频道(1677466031178082391) 子频道(11348328) Don Quijote(15074255222356608300): <@!13944062295744523402> embed
+2022-10-07 11:44:49 [WebSocket] INFO  com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - [AtMessage]: 频道(1677466031178082391) 子频道(11348328) Don Quijote(15074255222356608300): <@!13944062295744523402> ping
+2022-10-07 11:44:57 [WebSocket] INFO  com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - [AtMessage]: 频道(1677466031178082391) 子频道(11348328) Don Quijote(15074255222356608300): <@!13944062295744523402> ark
+2022-10-07 11:44:57 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - API请求错误!
+2022-10-07 11:44:57 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - TraceId: acba5a05f02ab43fca6865e12a1e7c79
+2022-10-07 11:44:57 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求地址: /channels/11348328/messages
+2022-10-07 11:44:57 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 状态码: 403
+2022-10-07 11:44:57 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 返回内容: {"code":304004,"message":"no permission to use this ark template"}
+2022-10-07 11:44:57 [WebSocket] ERROR com.sewell.qqbot.api.BaseApi - 请求体: {"ark":{"kv":[{"key":"#DESC#"},{"key":"#PROMPT#"},{"key":"#TITLE#"},{"key":"#METADESC#"},{"key":"#IMG#"},{"key":"#LINK#"},{"key":"#SUBTITLE#"}],"templateId":24},"msg_id":"08d7d09df9fbcee3a31710e8d2b405385b48b8c1fe9906"}
+2022-10-07 11:44:57 [WebSocket] ERROR com.sewell.qqbot.websocket.subscribe.dispatch.AtMessageSubscriber - 消息处理发生异常: 304004 没有发送Ark消息权限(no permission to use this ark template)

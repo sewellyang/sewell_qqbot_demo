@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: @artifactId@
+  main:
+    allow-circular-references: true
+
+bot:
+  config:
+    bot-app-id: 102021891
+    bot-token: qpXHrX0TjOqPXNv0ILYMZal7T9keNGjp
+    bot-secret: a4d3FDwRhiU5SaT7
+    intents:
+#      - GUILDS
+#      - GUILD_MEMBERS
+#      - GUILD_MESSAGE_REACTIONS
+#      - DIRECT_MESSAGE
+#      - FORUM_EVENT
+#      - MESSAGE_AUDIT
+#      - USER_MESSAGES
+      - AT_MESSAGES
+#    use-sand-box-mode: true
