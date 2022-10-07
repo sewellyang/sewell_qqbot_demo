@@ -8,18 +8,6 @@
     <artifactId>sewell_qqbot_demo</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>14</source>
-                    <target>14</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
     <name>sewell_qqbot_demo</name>
 
     <parent>
@@ -29,42 +17,18 @@
     </parent>
 
     <properties>
+        <java.version>17</java.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <lombok.version>1.18.24</lombok.version>
         <java-websocket.version>1.5.3</java-websocket.version>
         <okhttp.version>4.10.0</okhttp.version>
         <fastjson.version>1.2.80</fastjson.version>
-
+        <!-- 本地打包复制到指定目录 -->
+        <target.dir>..\install</target.dir>
     </properties>
 
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-web</artifactId>-->
-<!--            <exclusions>-->
-<!--                &lt;!&ndash;排除tomcat依赖&ndash;&gt;-->
-<!--                <exclusion>-->
-<!--                    <artifactId>spring-boot-starter-tomcat</artifactId>-->
-<!--                    <groupId>org.springframework.boot</groupId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash;undertow容器&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-undertow</artifactId>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-websocket</artifactId>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot</artifactId>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -116,4 +80,64 @@
         </dependency>
     </dependencies>
 
+
+    <build>
+        <!--反向渲染属性文件 以支持启动时显示 build timestamp-->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <!--输出带日期时间的文件名-->
+<!--        <finalName>${project.artifactId}-${project.version}-${maven.build.timestamp}</finalName>-->
+        <finalName>${project.artifactId}-${project.version}-${timestamp}</finalName>
+
+        <plugins>
+            <!--以下插件解决 timestamp 的时区问题-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>1.4</version>
+                <configuration>
+                    <timestampFormat>yyyy-MM-dd_HHmm</timestampFormat>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>create-timestamp</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <inherited>false</inherited>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <mkdir dir="${target.dir}"/>
+                                <copy todir="${target.dir}" overwrite="true">
+                                    <fileset dir="${project.build.directory}" erroronmissingdir="false">
+                                        <include name="*.jar"/>
+                                    </fileset>
+                                </copy>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
 </project>
