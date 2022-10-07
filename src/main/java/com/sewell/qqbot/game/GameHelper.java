@@ -16,7 +16,9 @@ public class GameHelper {
      **/
     public final static Map<String, BotGame> userPlayGame = new HashMap<>();
 
-
+    /**
+     * 命令 和对应的游戏处理器
+     **/
     public final static Map<String, BotGame> cmdMatchGame = new HashMap<>();
 
 
