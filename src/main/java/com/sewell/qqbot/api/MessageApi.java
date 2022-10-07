@@ -42,6 +42,23 @@ public class MessageApi extends BaseApi {
     }
 
     /**
+     * 发送文本消息-引用
+     *
+     * @param channelId 子频道ID
+     * @param content   文本内容
+     * @param messageId 消息ID
+     * @return {@link Message} 对象
+     */
+    public Message sendMessageReference(String channelId, String content, String messageId) throws ApiException {
+        Map<String, Object> data = new HashMap<>();
+        data.put("content", content);
+        HashMap<String, Object> reference = new HashMap<>();
+        data.put("messageReference", reference);
+        reference.put("messageId", messageId);
+        return sendMessage(channelId, data);
+    }
+
+    /**
      * 发送文本消息
      *
      * @param channelId 子频道ID

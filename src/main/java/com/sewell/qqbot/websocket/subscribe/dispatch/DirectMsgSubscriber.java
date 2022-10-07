@@ -9,7 +9,6 @@ import com.sewell.qqbot.websocket.BotWebsocketClient;
 import com.sewell.qqbot.websocket.entity.Payload;
 import com.sewell.qqbot.websocket.event.DirectMessageEvent;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -43,7 +42,7 @@ public class DirectMsgSubscriber extends AbstractDispatchSubscriber{
     }
 
     private void onDirectMessage(DirectMessageEvent event) {
-        val message = event.getMessage();
+        Message message = event.getMessage();
         log.debug("{}", message);
         api.getDirectMessageApi().sendMessage(
                 message.getGuildId(),

@@ -4,25 +4,23 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.sewell.qqbot.api.ApiManager;
 import com.sewell.qqbot.bot.BotService;
-import com.sewell.qqbot.entity.DirectMessageSession;
 import com.sewell.qqbot.entity.Message;
-import com.sewell.qqbot.entity.MessageMarkdown;
-import com.sewell.qqbot.entity.api.ApiPermission;
-import com.sewell.qqbot.entity.api.ApiPermissionDemand;
-import com.sewell.qqbot.entity.api.ApiPermissionDemandIdentify;
 import com.sewell.qqbot.exception.ApiException;
-import com.sewell.qqbot.template.EmbedTemplate;
-import com.sewell.qqbot.template.TextThumbnailTemplate;
+import com.sewell.qqbot.game.BotGame;
+import com.sewell.qqbot.game.GameHelper;
+import com.sewell.qqbot.game.constant.Commands;
+import com.sewell.qqbot.game.constant.SolitaireGame;
+import com.sewell.qqbot.util.SpringBeanUtils;
 import com.sewell.qqbot.websocket.BotWebsocketClient;
 import com.sewell.qqbot.websocket.entity.Payload;
 import com.sewell.qqbot.websocket.event.AtMessageEvent;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -31,7 +29,7 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class AtMessageSubscriber extends AbstractDispatchSubscriber {
+public class AtMessageSubscriber extends AbstractDispatchSubscriber implements ApplicationRunner {
 
     @Resource
     private ApiManager api;
@@ -39,6 +37,20 @@ public class AtMessageSubscriber extends AbstractDispatchSubscriber {
     @Resource
     protected BotService botService;
 
+    @Resource
+    protected List<Commands> commands;
+
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+        commands.stream()
+                .forEach(o->{
+                    BotGame bean = (BotGame) SpringBeanUtils.getInstance().getBean(o.getBotGame());
+                    o.getCmds().stream()
+                            .forEach(s->{
+                                GameHelper.cmdMatchGame.put(s, bean);
+                            });
+                });
+    }
 
     @Override
     public void onSubscribe(Payload payload) {
@@ -66,136 +78,42 @@ public class AtMessageSubscriber extends AbstractDispatchSubscriber {
     }
 
     private void messageHandle(AtMessageEvent atMessageEvent) {
-        val message = atMessageEvent.getMessage();
+        Message message = atMessageEvent.getMessage();
         message(message);
     }
 
     private void message(Message message) {
-        val guildId = message.getGuildId();
-        val channelId = message.getChannelId();
-        val content = message.getContent();
-        val messageId = message.getId();
-        val author = message.getAuthor();
+        String channelId = message.getChannelId();
+        String content = message.getContent();
+        String messageId = message.getId();
         try {
-            val args = content.split(" ");
-            val command = args[0];
-            switch (command) {
-                case "threads":
-                    List<Thread> threads = api.getForumApi().getThreadList(channelId);
-                    log.info("{}", threads);
-                    api.getMessageApi().sendMessage(channelId, Arrays.toString(threads.toArray()), messageId);
-                    break;
-                case "md":
-                    MessageMarkdown md = new MessageMarkdown();
-                    md.setContent("测试");
-                    api.getMessageApi().sendMessage(channelId, md);
-                    break;
-                case "error":
-                    api.getMessageApi().sendMessage(
-                            channelId,
-                            "https://www.qq.com",
-                            messageId
-                    );
-                    break;
-                case "apiList":
-                    List<ApiPermission> permissions = api.getGuildApi().getApiPermissions(guildId);
-                    for (ApiPermission permission : permissions) {
-                        log.debug("{}", permission);
-                        api.getMessageApi().sendMessage(
-                                channelId,
-                                permission.toString(),
-                                messageId
-                        );
-                    }
-                    break;
-                case "apiLink":
-                    ApiPermissionDemandIdentify identify = new ApiPermissionDemandIdentify();
-                    identify.setPath("/guilds/{guild_id}/members/{user_id}");
-                    identify.setMethod("GET");
-                    ApiPermissionDemand demand = api.getGuildApi().createApiPermissionDemand(
-                            guildId,
-                            channelId,
-                            identify,
-                            "测试"
-                    );
-                    api.getMessageApi().sendMessage(
-                            channelId,
-                            demand.toString(),
-                            messageId);
-                    break;
-                case "dm":
-                    DirectMessageSession dms = api.getDirectMessageApi().createSession(
-                            author.getId(),
-                            guildId
-                    );
-                    api.getDirectMessageApi().sendMessage(
-                            dms.getGuildId(),
-                            "主动私信测试",
-                            null
-                    );
-                    break;
-                case "push":
-                    api.getMessageApi().sendMessage(
-                            channelId,
-                            "测试",
-                            null
-                    );
-                    break;
-                case "members":
-                    val members = api.getGuildApi().getGuildMembers(guildId, 1000);
-                    for (val member : members) {
-                        member.getUser().setAvatar("");
-                    }
-                    api.getMessageApi().sendMessage(
-                            channelId,
-                            members.toString(),
-                            messageId
-                    );
-                    break;
-                case "info":
-                    api.getChannelPermissionsApi().addChannelPermissions(channelId, author.getId(), 1);
-                    break;
-                case "muteAll":
-                    api.getMuteApi().muteAll(guildId, 300);
-                    break;
-                case "muteMe":
-                    api.getMuteApi().mute(guildId, author.getId(), 300);
-                    java.lang.Thread.sleep(6000);
-                    api.getMuteApi().mute(guildId, author.getId(), 0);
-                    break;
-                case "dMsg":
-                    val m = api.getMessageApi().sendMessage(channelId, "你好", messageId);
-                    val id = m.getId();
-                    api.getMessageApi().deleteMessage(channelId, id);
-                    break;
-                case "embed":
-                    val fields = new ArrayList<String>();
-                    fields.add("测试");
-                    fields.add("测试2");
-                    fields.add(String.valueOf(System.currentTimeMillis()));
-                    val embed = EmbedTemplate.builder()
-                            .title("测试")
-                            .prompt("[测试]Embed")
-                            .thumbnail("https://b.armoe.cn/assets/image/logo.png")
-                            .fields(fields)
-                            .build().toMessageEmbed();
-                    api.getMessageApi().sendMessage(channelId, embed, messageId);
-                    break;
-                case "ping":
-                    api.getMessageApi().sendMessage(channelId, "pong", messageId);
-                    break;
-                case "ark":
-                    val ark = TextThumbnailTemplate.builder()
-                            .build().toMessageArk();
-                    api.getMessageApi().sendMessage(channelId, ark, messageId);
-                    break;
+            String[] args = content.split(" ");
+            String command = args[0];
+            String gameUserKey = GameHelper.cacheUserGameKey(message);
+            BotGame gameHandle = null;
+            if (GameHelper.userPlayGame.containsKey(gameUserKey)) {
+                gameHandle = GameHelper.userPlayGame.get(gameUserKey);
             }
+
+            if (GameHelper.cmdMatchGame.containsKey(command)) {
+                gameHandle = GameHelper.cmdMatchGame.get(command);
+                GameHelper.userPlayGame.put(gameUserKey, gameHandle);
+            }
+
+            if (gameHandle == null) {
+                log.error("无效的命令：{}", command);
+                //兜底，使用成语接龙的handler
+                gameHandle = GameHelper.cmdMatchGame.get(SolitaireGame.SolitaireGameEnum.SOLITAIRE_START.getCmd());
+            }
+            gameHandle.handle(message);
+
         } catch (ApiException e) {
             log.error("消息处理发生异常: {} {}({})", e.getCode(), e.getMessage(), e.getError());
             api.getMessageApi().sendMessage(channelId, "消息处理失败: " + e.getMessage(), messageId);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
         }
     }
+
 
 }
