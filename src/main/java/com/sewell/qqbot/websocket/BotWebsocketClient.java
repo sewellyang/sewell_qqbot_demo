@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * The type Soul websocket client.
+ * websocket client.
  */
 @Slf4j
 public final class BotWebsocketClient extends WebSocketClient {
